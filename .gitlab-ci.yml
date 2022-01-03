@@ -3,7 +3,7 @@ variables:
   POSTGRES_DATABASE: $POSTGRES_DATABASE
   POSTGRES_USER: $POSTGRES_USER
   POSTGRES_PASSWORD: $POSTGRES_PASSWORD
-  SSH_PRIVKEY_FOR_ROOT_YOURVISIONNOW_COM: $SSH_PRIVKEY_FOR_ROOT_YOURVISIONNOW_COM
+  SSH_PRIVKEY_FOR_ROOT_YOURVISIONNOW_COM: $SSH_PRIVKEY_FOR_NORM_RYANCHAUSSE_COM
   USERNAME: $USERNAME
   DEPLOY_TOKEN: $DEPLOY_TOKEN
 
@@ -38,8 +38,8 @@ setup_docker_container_and_deploy:
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
     - touch ~/.ssh/id_rsa
-    - echo 'Set beta.yourvisionnow.com privkey'
-    - echo "$SSH_PRIVKEY_FOR_ROOT_YOURVISIONNOW_COM" | ssh-add - > ~/.ssh/id_rsa
+    - echo 'Set norm.ryanchausse.com privkey'
+    - echo "$SSH_PRIVKEY_FOR_NORM_RYANCHAUSSE_COM" | ssh-add - > ~/.ssh/id_rsa
     - chmod 0600 ~/.ssh/id_rsa
     - ssh-keyscan beta.yourvisionnow.com >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
@@ -49,17 +49,17 @@ setup_docker_container_and_deploy:
     #- ssh -i ~/.ssh/id_rsa root@beta.yourvisionnow.com
     #  "cd /var/www;
     #  git clone https://$USERNAME:$DEPLOY_TOKEN@code.ryanchausse.com/ryanchausse/yourvisionnow.git;"
-    - ssh -i ~/.ssh/id_rsa root@beta.yourvisionnow.com
+    - ssh -i ~/.ssh/id_rsa root@norm.ryanchausse.com
       "hostname;
       ssh-keyscan code.ryanchausse.com >> ~/.ssh/known_hosts;
       chmod 644 ~/.ssh/known_hosts;
-      echo 'Pulling yourvisionnow repo';
-      cd /var/www/yourvisionnow;
+      echo 'Pulling norm repo';
+      cd /var/www/norm;
       git pull;
       apt install -y python3-pip;
       pip3 install virtualenv;
-      virtualenv venv_yourvisionnow;
-      source venv_yourvisionnow/bin/activate;
+      virtualenv venv_norm;
+      source venv_norm/bin/activate;
       pip3 install -r requirements.txt;
       python3 manage.py makemigrations;
       python3 manage.py migrate;
