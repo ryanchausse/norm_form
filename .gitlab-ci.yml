@@ -41,12 +41,12 @@ setup_docker_container_and_deploy:
     - echo 'Set norm.ryanchausse.com privkey'
     - echo "$SSH_PRIVKEY_FOR_NORM_RYANCHAUSSE_COM" | ssh-add - > ~/.ssh/id_rsa
     - chmod 0600 ~/.ssh/id_rsa
-    - ssh-keyscan beta.yourvisionnow.com >> ~/.ssh/known_hosts
+    - ssh-keyscan norm.ryanchausse.com >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
     - git config --global user.email "chausse@gmail.com"
     - git config --global user.name "Ryan Chausse"
-    - echo 'try to connect to beta.yourvisionnow.com'
-    #- ssh -i ~/.ssh/id_rsa root@beta.yourvisionnow.com
+    - echo 'try to connect to norm.ryanchausse.com'
+    #- ssh -i ~/.ssh/id_rsa root@norm.ryanchausse.com
     #  "cd /var/www;
     #  git clone https://$USERNAME:$DEPLOY_TOKEN@code.ryanchausse.com/ryanchausse/yourvisionnow.git;"
     - ssh -i ~/.ssh/id_rsa root@norm.ryanchausse.com
