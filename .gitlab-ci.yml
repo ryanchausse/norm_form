@@ -3,7 +3,7 @@ variables:
   POSTGRES_DATABASE: $POSTGRES_DATABASE
   POSTGRES_USER: $POSTGRES_USER
   POSTGRES_PASSWORD: $POSTGRES_PASSWORD
-  SSH_PRIVKEY_FOR_NORM_RYANCHAUSSE_COM: $SSH_PRIVKEY_FOR_ROOT_RYANCHAUSSE_COM
+  SSH_PRIVKEY_FOR_FORM_HENDRICKSENPHD_COM: $SSH_PRIVKEY_FOR_FORM_HENDRICKSENPHD_COM
   USERNAME: $USERNAME
   DEPLOY_TOKEN: $DEPLOY_TOKEN
 
@@ -38,18 +38,18 @@ setup_docker_container_and_deploy:
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
     - touch ~/.ssh/id_rsa
-    - echo 'Set norm.ryanchausse.com privkey'
-    - echo "$SSH_PRIVKEY_FOR_NORM_RYANCHAUSSE_COM" | ssh-add - > ~/.ssh/id_rsa
+    - echo 'Set form.hendricksenphd.com privkey'
+    - echo "$SSH_PRIVKEY_FOR_FORM_HENDRICKSENPHD_COM" | ssh-add - > ~/.ssh/id_rsa
     - chmod 0600 ~/.ssh/id_rsa
-    - ssh-keyscan norm.ryanchausse.com >> ~/.ssh/known_hosts
+    - ssh-keyscan form.hendricksenphd.com >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
     - git config --global user.email "chausse@gmail.com"
     - git config --global user.name "Ryan Chausse"
-    - echo 'try to connect to norm.ryanchausse.com'
-    #- ssh -i ~/.ssh/id_rsa root@norm.ryanchausse.com
+    - echo 'try to connect to form.hendricksenphd.com'
+    #- ssh -i ~/.ssh/id_rsa root@form.hendricksenphd.com
     #  "cd /var/www;
-    #  git clone https://$USERNAME:$DEPLOY_TOKEN@code.ryanchausse.com/ryanchausse/yourvisionnow.git;"
-    - ssh -vvv -i ~/.ssh/id_rsa root@norm.ryanchausse.com
+    #  git clone https://$USERNAME:$DEPLOY_TOKEN@code.ryanchausse.com/ryanchausse/norm.git;"
+    - ssh -vvv -i ~/.ssh/id_rsa root@form.hendricksenphd.com
       "hostname;
       ssh-keyscan code.ryanchausse.com >> ~/.ssh/known_hosts;
       chmod 644 ~/.ssh/known_hosts;
