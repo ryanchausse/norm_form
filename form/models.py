@@ -157,7 +157,6 @@ class Order(models.Model):
 class NormForm(models.Model):
     name = models.CharField(max_length=60)
     patient = models.ForeignKey(Customer, default=None, on_delete=models.CASCADE)
-    lens_design_item = models.ForeignKey(LensDesignItem, null=True, default=None, on_delete=models.CASCADE)
     notes = models.CharField(max_length=2000, null=True, default='')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -166,5 +165,5 @@ class NormForm(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'Order'
-        verbose_name_plural = 'Orders'
+        verbose_name = 'Norm Form'
+        verbose_name_plural = 'Norm Forms'
