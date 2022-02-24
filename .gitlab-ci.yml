@@ -1,12 +1,11 @@
 variables:
   # DJANGO_CONFIG: "test"
-  POSTGRES_DATABASE: $POSTGRES_DATABASE
-  POSTGRES_USER: $POSTGRES_USER
-  POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+  NORM_POSTGRES_DATABASE: $NORM_POSTGRES_DATABASE
+  NORM_POSTGRES_USER: $NORM_POSTGRES_USER
+  NORM_POSTGRES_PASSWORD: $NORM_POSTGRES_PASSWORD
   SSH_PRIVKEY_FOR_FORM_HENDRICKSENPHD_COM: $SSH_PRIVKEY_FOR_FORM_HENDRICKSENPHD_COM
   USERNAME: $USERNAME
   DEPLOY_TOKEN: $DEPLOY_TOKEN
-
   TZ: "America/Los_Angeles"
 
 default:
@@ -18,8 +17,8 @@ default:
 #  image: postgres
 #  script:
 #  # official way to provide password to psql: http://www.postgresql.org/docs/9.3/static/libpq-envars.html
-#  - export PGPASSWORD=$POSTGRES_PASSWORD
-#  - psql -h "postgres" -U "$POSTGRES_USER" -d "$POSTGRES_DATABASE" -c "SELECT 'OK' AS status;"
+#  - export PGPASSWORD=$NORM_POSTGRES_PASSWORD
+#  - psql -h "postgres" -U "$NORM_POSTGRES_USER" -d "$NORM_POSTGRES_DATABASE" -c "SELECT 'OK' AS status;"
 
 stages:
   - deploy
@@ -49,7 +48,7 @@ setup_docker_container_and_deploy:
     #- ssh -i ~/.ssh/id_rsa root@form.hendricksenphd.com
     #  "cd /var/www;
     #  git clone https://$USERNAME:$DEPLOY_TOKEN@code.ryanchausse.com/ryanchausse/norm.git;"
-    - ssh -vvv -i ~/.ssh/id_rsa root@form.hendricksenphd.com
+    - ssh -vvv -i ~/.ssh/id_rsa root@form.hendricksenphd.com -p 2986
       "hostname;
       ssh-keyscan code.ryanchausse.com >> ~/.ssh/known_hosts;
       chmod 644 ~/.ssh/known_hosts;
