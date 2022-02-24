@@ -117,6 +117,6 @@ GitHub.sublime-settings
 .history
 
 # Additional ignored items (removed from repo via git rm --cached <filename>
-yourvisionnow/settings.py
+norm/settings.py
 .current_prod_apache_configuration
-kiosk/templates/static/admin
+form/templates/static/admin
