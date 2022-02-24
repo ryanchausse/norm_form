@@ -157,6 +157,7 @@ class Order(models.Model):
 class NormForm(models.Model):
     name = models.CharField(max_length=60)
     patient = models.ForeignKey(Customer, default=None, on_delete=models.CASCADE)
+    appearance = models.CharField(max_length=2000, null=True, default='')
     notes = models.CharField(max_length=2000, null=True, default='')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
