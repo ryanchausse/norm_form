@@ -40,7 +40,7 @@ setup_docker_container_and_deploy:
     - echo 'Set form.hendricksenphd.com privkey'
     - echo "$SSH_PRIVKEY_FOR_FORM_HENDRICKSENPHD_COM" | ssh-add - > ~/.ssh/id_rsa
     - chmod 0600 ~/.ssh/id_rsa
-    - ssh-keyscan form.hendricksenphd.com >> ~/.ssh/known_hosts
+    - ssh-keyscan -p 2986 form.hendricksenphd.com >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
     - git config --global user.email "chausse@gmail.com"
     - git config --global user.name "Ryan Chausse"
