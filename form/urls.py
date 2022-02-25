@@ -18,9 +18,9 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.KioskPage.as_view(), name='form'),
-    path('form/', views.KioskPage.as_view(), name='form'),
-    path('submit_order', views.SubmitOrder.as_view(), name='submit_order'),
-    path('index.html', views.KioskPage.as_view(), name='index'),
+    path('', views.NormFormPage.as_view(), name='form'),
+    path('form/', views.NormFormPage.as_view(), name='form'),
+    path('submit_order', views.SubmitNormForm.as_view(), name='submit_order'),
+    path('index.html', views.NormFormPage.as_view(), name='index'),
     path('manager', views.ManagerPage.as_view(), name='manager'),
 ]
