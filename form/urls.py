@@ -20,7 +20,7 @@ from . import views
 urlpatterns = [
     path('', views.NormFormPage.as_view(), name='form'),
     path('form/', views.NormFormPage.as_view(), name='form'),
-    path('submit_order', views.SubmitNormForm.as_view(), name='submit_order'),
+    path('submit_form', views.SubmitNormForm.as_view(), name='submit_form'),
     path('index.html', views.NormFormPage.as_view(), name='index'),
     path('manager', views.ManagerPage.as_view(), name='manager'),
 ]

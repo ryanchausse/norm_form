@@ -12,6 +12,7 @@ import logging
 from django.conf import settings
 from .models import Patient
 from .models import NormForm
+from .forms import NormFormForm
 
 
 class SubmitNormForm(TemplateView):
@@ -19,6 +20,14 @@ class SubmitNormForm(TemplateView):
 
     def post(self, request, *args, **kwargs):
         context = self.get_context_data(**kwargs)
+        # create a form instance and populate it with data from the request:
+        form = NormFormForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            print(form.cleaned_data)
+            print('received.')
+            return redirect('/')
         request.session.flush()
         return redirect('/index.html')
 
@@ -35,6 +44,8 @@ class NormFormPage(TemplateView):
             context['user_is_in_admins'] = True
         else:
             context['user_is_in_admins'] = False
+        x = NormFormForm()
+        context['form'] = x
         return context
 
 
