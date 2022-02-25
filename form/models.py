@@ -3,11 +3,22 @@ from django.core.validators import ValidationError
 from django.db.models import Q
 
 
+class Facility(models.Model):
+    name = models.CharField(max_length=1000, null=True)
+
+    def __str__(self):
+        return f'{self.name}'
+
+    class Meta:
+        verbose_name = 'Facility'
+        verbose_name_plural = 'Facilities'
+
+
 class Patient(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255, null=True)
-    email = models.CharField(max_length=255, null=True)
     mrn = models.IntegerField(null=True)
+    facility = models.ForeignKey(Facility, default=None, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -22,8 +33,161 @@ class Patient(models.Model):
 class NormForm(models.Model):
     name = models.CharField(max_length=60)
     patient = models.ForeignKey(Patient, default=None, on_delete=models.CASCADE)
-    appearance = models.CharField(max_length=2000, null=True, default='')
-    notes = models.CharField(max_length=2000, null=True, default='')
+    facility = models.ForeignKey(Facility, default=None, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now=True)
+
+    # Subjective
+    chief_complaints_problems_history = models.CharField(max_length=50000, null=True, default='')
+
+    # Objective - staff / other sources reported
+    agg_behavior_physical = models.BooleanField(default=False)
+    agg_behavior_verbal = models.BooleanField(default=False)
+    agg_behavior_gestures = models.BooleanField(default=False)
+    agg_behavior_threatening = models.BooleanField(default=False)
+    agg_behavior_notes = models.CharField(max_length=50000, null=True, default='')
+
+    gen_appearance_well_groomed = models.BooleanField(default=False)
+    gen_appearance_fairly_groomed = models.BooleanField(default=False)
+    gen_appearance_poorly_groomed = models.BooleanField(default=False)
+    gen_appearance_disheveled = models.BooleanField(default=False)
+    gen_appearance_notes = models.CharField(max_length=50000, null=True, default='')
+
+    treat_and_compliance_acceptable = models.BooleanField(default=False)
+    treat_and_compliance_low_motivation = models.BooleanField(default=False)
+    treat_and_compliance_resistive = models.BooleanField(default=False)
+    treat_and_compliance_argumentative = models.BooleanField(default=False)
+    treat_and_compliance_exit_seeking = models.BooleanField(default=False)
+    treat_and_compliance_notes = models.CharField(max_length=50000, null=True, default='')
+
+    inappropriate_behavior = models.BooleanField(default=False)
+    inappropriate_behavior_notes = models.CharField(max_length=50000, null=True, default='')
+
+    attitude_cooperative = models.BooleanField(default=False)
+    attitude_uncooperative = models.BooleanField(default=False)
+    attitude_marginally_cooperative = models.BooleanField(default=False)
+    attitude_other = models.BooleanField(default=False)
+    attitude_notes = models.CharField(max_length=50000, null=True, default='')
+
+    speech_intact = models.BooleanField(default=False)
+    speech_pressured = models.BooleanField(default=False)
+    speech_hyperverbal = models.BooleanField(default=False)
+    speech_loud = models.BooleanField(default=False)
+    speech_slow = models.BooleanField(default=False)
+    speech_unintelligible = models.BooleanField(default=False)
+    speech_yelling_out = models.BooleanField(default=False)
+    speech_perseverative = models.BooleanField(default=False)
+    speech_notes = models.CharField(max_length=50000, null=True, default='')
+
+    verbal_abilities_receptive_language_sufficient = models.BooleanField(default=False)
+    verbal_abilities_receptive_language_impaired = models.BooleanField(default=False)
+    verbal_abilities_expressive_language_sufficient = models.BooleanField(default=False)
+    verbal_abilities_expressive_language_impaired = models.BooleanField(default=False)
+    verbal_abilities_notes = models.CharField(max_length=50000, null=True, default='')
+
+    communication_verbal = models.BooleanField(default=False)
+    communication_non_verbal = models.BooleanField(default=False)
+    communication_minimally_verbal = models.BooleanField(default=False)
+    communication_withdrawn = models.BooleanField(default=False)
+    communication_avoidant = models.BooleanField(default=False)
+    communication_evasive = models.BooleanField(default=False)
+    communication_notes = models.CharField(max_length=50000, null=True, default='')
+
+    perceptual_disturbances_none = models.BooleanField(default=False)
+    perceptual_disturbances_hallucinations = models.BooleanField(default=False)
+    perceptual_disturbances_visual = models.BooleanField(default=False)
+    perceptual_disturbances_auditory = models.BooleanField(default=False)
+    perceptual_disturbances_command = models.BooleanField(default=False)
+    perceptual_disturbances_tactile = models.BooleanField(default=False)
+    perceptual_disturbances_olfactory = models.BooleanField(default=False)
+    perceptual_disturbances_notes = models.CharField(max_length=50000, null=True, default='')
+
+    level_of_consciousness_alert = models.BooleanField(default=False)
+    level_of_consciousness_confused = models.BooleanField(default=False)
+    level_of_consciousness_drowsy = models.BooleanField(default=False)
+    level_of_consciousness_somnolent = models.BooleanField(default=False)
+    level_of_consciousness_fluctuating = models.BooleanField(default=False)
+    level_of_consciousness_notes = models.CharField(max_length=50000, null=True, default='')
+
+    thought_process_linear = models.BooleanField(default=False)
+    thought_process_disorganized = models.BooleanField(default=False)
+    thought_process_fragmented = models.BooleanField(default=False)
+    thought_process_racing = models.BooleanField(default=False)
+    thought_process_circumstantial = models.BooleanField(default=False)
+    thought_process_tangential = models.BooleanField(default=False)
+    thought_process_blocking = models.BooleanField(default=False)
+    thought_process_notes = models.CharField(max_length=50000, null=True, default='')
+
+    thought_content_normal = models.BooleanField(default=False)
+    thought_content_delusions = models.BooleanField(default=False)
+    thought_content_persecutory = models.BooleanField(default=False)
+    thought_content_grandiose = models.BooleanField(default=False)
+    thought_content_religious = models.BooleanField(default=False)
+    thought_content_self_referential = models.BooleanField(default=False)
+    thought_content_poverty_of_content = models.BooleanField(default=False)
+    thought_content_notes = models.CharField(max_length=50000, null=True, default='')
+
+    mood_euthymic = models.BooleanField(default=False)
+    mood_depressed = models.BooleanField(default=False)
+    mood_anxious = models.BooleanField(default=False)
+    mood_irritable = models.BooleanField(default=False)
+    mood_angry = models.BooleanField(default=False)
+    mood_tearful = models.BooleanField(default=False)
+    mood_elated = models.BooleanField(default=False)
+    mood_labile = models.BooleanField(default=False)
+    mood_notes = models.CharField(max_length=50000, null=True, default='')
+
+    affect_appropriate = models.BooleanField(default=False)
+    affect_flat = models.BooleanField(default=False)
+    affect_blunted = models.BooleanField(default=False)
+    affect_expansive = models.BooleanField(default=False)
+    affect_agitated = models.BooleanField(default=False)
+    affect_notes = models.CharField(max_length=50000, null=True, default='')
+
+    harmfulness_self = models.BooleanField(default=False)
+    harmfulness_others = models.BooleanField(default=False)
+    harmfulness_negative_statements = models.BooleanField(default=False)
+    harmfulness_other = models.BooleanField(default=False)
+    harmfulness_notes = models.CharField(max_length=50000, null=True, default='')
+
+    attention_concentration_good = models.BooleanField(default=False)
+    attention_concentration_fair = models.BooleanField(default=False)
+    attention_concentration_poor = models.BooleanField(default=False)
+    attention_concentration_notes = models.CharField(max_length=50000, null=True, default='')
+
+    orientation_time = models.BooleanField(default=False)
+    orientation_place = models.BooleanField(default=False)
+    orientation_person = models.BooleanField(default=False)
+    orientation_situation = models.BooleanField(default=False)
+    orientation_disoriented = models.BooleanField(default=False)
+    orientation_notes = models.CharField(max_length=50000, null=True, default='')
+
+    insight_judgement_good = models.BooleanField(default=False)
+    insight_judgement_fair = models.BooleanField(default=False)
+    insight_judgement_poor = models.BooleanField(default=False)
+    insight_judgement_notes = models.CharField(max_length=50000, null=True, default='')
+
+    sleep_disturbance = models.BooleanField(default=False)
+    sleep_disturbance_apnea = models.BooleanField(default=False)
+    sleep_disturbance_narcolepsy = models.BooleanField(default=False)
+    sleep_disturbance_describe = models.BooleanField(default=False)
+    sleep_disturbance_notes = models.CharField(max_length=50000, null=True, default='')
+
+    appetite_change = models.BooleanField(default=False)
+    appetite_change_notes = models.CharField(max_length=50000, null=True, default='')
+
+    # Misc
+    appetite_change_tobacco_screen = models.BooleanField(default=False)
+    tele_health = models.BooleanField(default=False)
+
+    # Assessment
+    diagnostic_impression = models.CharField(max_length=50000, null=True, default='')
+
+    # Plan
+    current_medication = models.CharField(max_length=50000, null=True, default='')
+    discussion_treatment = models.CharField(max_length=50000, null=True, default='')
+
+    signature = models.CharField(max_length=500, null=True, default='')
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
