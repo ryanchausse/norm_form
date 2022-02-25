@@ -12,7 +12,8 @@ class NormSocialAccountAdapter(DefaultSocialAccountAdapter):
             return HttpResponse('Please log in with a Google account. You \
                                 may have to log out of your current Gmail account. \
                                 Try again at <a href="./">Norm Form</a>')
-        elif email_address not in ['chausse@gmail.com', 'paul@hendricksenlabs.com', 'norm.hendricksen@gmail.com',
+        elif email_address not in ['chausse@gmail.com', 'paul@hendricksenlabs.com',
+                                   'paul.hendricksen@gmail.com', 'norm@hendricksenphd.com',
                                    'colton.hendricksen@gmail.com', 'colton@hendricksenlabs.com']:
             return HttpResponse('You are not authorized to log in. \
                                 Try again at <a href="./">Norm Form</a>')
