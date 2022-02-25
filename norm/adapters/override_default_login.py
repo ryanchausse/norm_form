@@ -6,9 +6,13 @@ from django.forms import ValidationError
 
 class NormSocialAccountAdapter(DefaultSocialAccountAdapter):
     def pre_social_login(self, request, sociallogin):
-        email_domain = user_email(sociallogin.user).split("@")[1]
-        if email_domain != 'gmail.com' or email_domain != 'hendricksenphd.com':
-            return HttpResponse('Please log in with a Google account that ends \
-                                with "@gmail.com" or "@hendricksenphd.com". You \
+        email_address = user_email(sociallogin.user)
+        email_domain = email_address.split("@")[1]
+        if email_domain != 'gmail.com' or email_domain != 'hendricksenphd.com' or email_domain != 'hendricksenlabs.com':
+            return HttpResponse('Please log in with a Google account. You \
                                 may have to log out of your current Gmail account. \
+                                Try again at <a href="./">Norm Form</a>')
+        elif email_address not in ['chausse@gmail.com', 'paul@hendricksenlabs.com', 'norm.hendricksen@gmail.com',
+                                   'colton.hendricksen@gmail.com', 'colton@hendricksenlabs.com']:
+            return HttpResponse('You are not authorized to log in. \
                                 Try again at <a href="./">Norm Form</a>')

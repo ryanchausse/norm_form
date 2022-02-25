@@ -29,6 +29,14 @@ class NormFormPage(TemplateView):
     """
     template_name = 'index.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.groups.filter(name='Admins').exists():
+            context['user_is_in_admins'] = True
+        else:
+            context['user_is_in_admins'] = False
+        return context
+
 
 class ManagerPage(TemplateView):
     """
