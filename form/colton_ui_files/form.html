@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Form</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="./vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="./css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="./css/form.css" rel="stylesheet"
+
+</head>
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <div class="card o-hidden border-1 shadow-lg my-5">
+
+            <div class="card-body">
+                
+                <div class="shadow p-3 mb-5 bg-body rounded">
+
+                <form>
+
+                    <div class="mx-auto" style="width: 570px;">
+                        <h2 class="text-dark">Psychologist Consultation / Follow-Up</h2>
+                    </div>
+
+                    <br />
+
+                    <!---->
+
+                        <label>
+                            Patient Name:
+                            <input type="text" name="patient name" id="textinput-name" required>
+                        </label>
+
+                        <label>
+                            Facility:
+                            <input type="text" name="facility" id="textinput-facility" required>
+                        </label>
+
+                        <label>
+                            Date:
+                            <input type="text" name="date" id="textinput-date" required>
+                        </label>
+                    
+                    <!---->
+                    
+                    <br />
+                    <br />
+
+                    <h5 class="text-dark">Subjective</h5>
+
+                    <!---->
+
+                    Chief Complaints Presenting Problems and History:
+                        <div class="form-floating">
+                            <textarea class="form-control" id="textbox-complaints" style="height: 100px"></textarea>
+                        </div>
+
+                    <!---->
+
+                    <br />
+
+                    <div class="dropdown-divider" ></div>
+
+                    <div class="mx-auto" style="width: 350px;">
+                        <h3 class="text-dark">Mental Status Examination<h3>
+                    </div>
+
+                    <!---->
+
+                    <h5 class="text-dark">Objective:</h5>
+
+                    <br />
+
+                    <!---->
+
+                    <div type="col">
+                        Staff / Other Reported Agressive Behavior:
+                        <select class="form-select" id="dropdown-behavior">
+                            <option selected>select one..</option>
+                            <option value="1" id="behavior-physical">Physical</option>
+                            <option value="2" id="behavior-verbal">Verbal</option>
+                            <option value="3" id="behavior-gestures">Gesture</option>
+                            <option value="4" id="behavior-threatening">Threatening</option>
+                          </select>
+                    </div>
+
+                    <br />
+
+                    <div type="col">
+                        General Apperance:
+                        <select class="form-select" id="dropdown-apperance">
+                            <option selected>select one..</option>
+                            <option value="1" id="appearance-wellgroomed">Well Groomed</option>
+                            <option value="2" id="appearance-fairlygroomed">Fairly Groomed</option>
+                            <option value="3" id="appearance-poorlygroomed">Poorly Groomed</option>
+                            <option value="4" id="appearance-disheveled">Disheveled</option>
+                          </select>
+                    </div>
+
+                    <br />
+
+                    <div type="col" >
+                        Treatment & Compliance:
+                        <select class="form-select" id="dropdown-compliance">
+                            <option selected>select one..</option>
+                            <option value="1" id="compliance-acceptable">Acceptable</option>
+                            <option value="2" id="compliance-lowmotivation">Low Motivation</option>
+                            <option value="3" id="compliance-resistive">Resistive</option>
+                            <option value="4" id="compliance-argumentive">Argumentive</option>
+                            <option value="5" id="compliance-exitseeking">Exit Seeking</option>
+                          </select>
+                    </div>
+
+                    <br />
+
+                    <div type="col">
+                        Inappropriate Behavior:
+                            <select class="form-select" id="dropdown-inappropriate_behavior">
+                                <option selected>select one..</option>
+                                <option value="1" id="inappropriate_behavior-no">No</option>
+                                <option value="2" id="inappropriate_behavior-yes">Yes</option>
+                              </select>
+                        </div>
+
+                    <br />
+
+                    <div type="col">
+                        Attitude:
+                            <select class="form-select" id="dropdown-attitude">
+                                <option selected>select one..</option>
+                                <option value="1" id="attitude-cooperative">Cooperative</option>
+                                <option value="2" id="attitude-uncooperative">Uncooperative</option>
+                                <option value="3" id="attitude-marginallycooperative">Marginally Cooperative</option>
+                                <option value="4" id="attitude-other">Other</option>
+                              </select>
+                        </div>
+                    
+                    <br />
+
+                    <div type="col">
+                        Speech:
+                            <select class="form-select" id="dropdown-speech">
+                                <option selected>select one..</option>
+                                <option value="1">Intact</option>
+                                <option value="2">Pressured</option>
+                                <option value="3">Hyper-verbal</option>
+                                <option value="4">Loud</option>
+                                <option value="5">Slow</option>
+                                <option value="6">Unintelligible</option>
+                                <option value="7">Yelling Out</option>
+                                <option value="8">Preservative</option>
+                              </select>
+                        </div>
+                    
+                    <br />
+
+                    <div type="col">
+                        Verbal Abilities
+                            <select class="form-select" id="dropdown-verbalability">
+                                <option selected>select one..</option>
+                                <option value="1">Receptive Language</option>
+                                <option value="2">Sufficient</option>
+                                <option value="3">Impaired</option>
+                                <option value="4">Impaired Expressive Language</option>
+                              </select>
+                        </div>
+                    
+                    <br />
+
+                    <div type="col">
+                        Communication:
+                            <select class="form-select" id="dropdown-communication">
+                                <option selected>select one..</option>
+                                <option value="1">Verbal</option>
+                                <option value="2">Non-Verbal</option>
+                                <option value="3">Minimally Verbal</option>
+                                <option value="4">Withdrawn</option>
+                                <option value="5">Avoidant</option>
+                                <option value="6">Evasive</option>
+                              </select>
+                        </div>
+                    
+                    <br />
+
+                    <div type="col">
+                        Perceptual Disturbances:
+                            <select class="form-select" id="dropdown-perceptual">
+                                <option selected>select one..</option>
+                                <option value="1">None</option>
+                                <option value="2">Hallucinations</option>
+                                <option value="3">Visual</option>
+                                <option value="4">Auditory</option>
+                                <option value="5">Command</option>
+                                <option value="6">Tactile</option>
+                                <option value="7">Olfactory</option>
+                              </select>
+                        </div>
+
+                    <br />
+
+                    <div type="col">
+                        Level of Consciousness:
+                            <select class="form-select" id="dropdown-consciousness">
+                                <option selected>select one..</option>
+                                <option value="1">Alert</option>
+                                <option value="2">Confused</option>
+                                <option value="3">Drowsy</option>
+                                <option value="4">Somnolent</option>
+                                <option value="5">Fluctuating</option>
+                              </select>
+                        </div>
+
+                    <br />
+
+                    <div type="col">
+                        Thought Process:
+                            <select class="form-select" id="dropdown-thought_process">
+                                <option selected>select one..</option>
+                                <option value="1">Linear</option>
+                                <option value="2">Disorganized</option>
+                                <option value="3">Fragmented</option>
+                                <option value="4">Racing</option>
+                                <option value="5">Circumstantial</option>
+                                <option value="6">Tangential</option>
+                                <option value="7">Blocking</option>
+                              </select>
+                        </div>
+                    
+                    <br />
+
+                    <div type="col">
+                        Thought Content:
+                            <select class="form-select" id="dropdown-thought_content">
+                                <option selected>select one..</option>
+                                <option value="1">Normal</option>
+                                <option value="2">Delusions</option>
+                                <option value="3">Persecutory</option>
+                                <option value="4">Grandiose</option>
+                                <option value="5">Religious</option>
+                                <option value="6">Self-Referential</option>
+                                <option value="7">Poverty of Content</option>
+                              </select>
+                        </div>
+                    
+                    <br />
+
+                    <div type="col">
+                        Mood:
+                            <select class="form-select" id="dropdown-mood">
+                                <option selected>select one..</option>
+                                <option value="1">Euthymic</option>
+                                <option value="2">Depressed</option>
+                                <option value="3">Anxious</option>
+                                <option value="4">Irritable</option>
+                                <option value="5">Angry</option>
+                                <option value="6">Tearful</option>
+                                <option value="7">Elated</option>
+                              </select>
+                        </div>
+                        
+                    <br />
+
+                    <div type="col">
+                        Affect:
+                            <select class="form-select" id="dropdown-affect">
+                                <option selected>select one..</option>
+                                <option value="1">Appropriate</option>
+                                <option value="2">Flat</option>
+                                <option value="3">Blunted</option>
+                                <option value="4">Expansive</option>
+                                <option value="5">Fluctuating</option>
+                              </select>
+                        </div>
+
+                    <br />
+
+                    <div type="col">
+                        Harmful Ness:
+                            <select class="form-select" id="dropdown-harmfulness">
+                                <option selected>select one..</option>
+                                <option value="1">Self</option>
+                                <option value="2">Others</option>
+                                <option value="3">Negative Statements</option>
+                                <option value="4">Describe</option>
+                              </select>
+                        </div>
+
+                    <br />
+
+                    <div type="col">
+                        Attention/Concentration:
+                            <select class="form-select" id="dropdown-attention_concentration">
+                                <option selected>select one..</option>
+                                <option value="1">Good</option>
+                                <option value="2">Fair</option>
+                                <option value="3">Poor</option>
+                              </select>
+                        </div>
+
+                    <br />
+
+                    <div type="col">
+                        Orientation:
+                            <select class="form-select" id="dropdown-orientation">
+                                <option selected>select one..</option>
+                                <option value="1">Time</option>
+                                <option value="2">Place</option>
+                                <option value="3">Person</option>
+                                <option value="4">situation</option>
+                                <option value="5">Disoriented</option>
+                              </select>
+                        </div>
+
+                    <br />
+
+                    <div type="col">
+                        Insight & Judgement:
+                            <select class="form-select" id="dropdown-insight_judgement">
+                                <option selected>select one..</option>
+                                <option value="1">Good</option>
+                                <option value="2">Fair</option>
+                                <option value="3">Poor</option>
+                              </select>
+                        </div>
+
+                    <br />
+
+                    <div type="col">
+                        Sleep Disturbance:
+                            <select class="form-select" id="dropdown-sleep">
+                                <option selected>select one..</option>
+                                <option value="1">No</option>
+                                <option value="2">Yes</option>
+                                <option value="3">Sleep Apnea</option>
+                                <option value="4">Narcolepsy</option>
+                                <option value="5">Describe</option>
+                              </select>
+                        </div>
+
+                    <br />
+
+                    <div type="col">
+                        Sleep Disturbance:
+                            <select class="form-select" id="dropdown-sleep">
+                                <option selected>select one..</option>
+                                <option value="1" id="sleep-no">No</option>
+                                <option value="2" id="sleep-yes">Yes</option>
+                                <option value="3" id="sleep-tobacco_screen">Tobacco Screen</option>
+                                <option value="4" id="sleep-telehealth">Tele-Health</option>
+                                <option value="5" id="sleep-describe">Describe</option>
+                              </select>
+                              <input type="text" placeholder="describe.." id="sleep-input">
+                        </div>
+
+                    <br />
+
+                    <!---->
+
+                    <h5 class="text-dark">Assessment:</h5>
+
+                    <!---->
+
+                    Diagnostic Impression:
+
+                    <!---->
+
+                    <div class="form-floating">
+                        <textarea class="form-control" id="textbox-diagnostic" style="height: 100px"></textarea>
+                      </div>
+
+                    <!---->
+
+                    <br />
+
+                    <h5 class="text-dark">Plan:</h5>
+
+                    <!---->
+
+                    Current Medication:
+
+                    <!---->
+
+                    <div class="form-floating">
+                        <textarea class="form-control" id="textbox-medication" style="height: 100px"></textarea>
+                      </div>
+
+                    <!---->
+
+                    Discussion and Treatment Considerations:
+
+                    <!---->
+
+                    <div class="form-floating">
+                        <textarea class="form-control" id="textbox-considerations" style="height: 100px"></textarea>
+                      </div>
+
+                    <br />
+
+                    <!---->
+                    <div class="d-flex flex-row-reverse">
+                        <button type="button" class="btn btn-primary" id="buttom-submit">Submit ➞</button>
+                        </div>
+
+                    </div>
+
+                </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    <script src="./form-functions.js"></script>
+
+</body>
+
+</html>

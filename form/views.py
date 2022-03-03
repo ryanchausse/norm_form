@@ -45,7 +45,7 @@ class NormFormPage(TemplateView):
         else:
             context['user_is_in_admins'] = False
         form = NormFormForm()
-        context['form'] = form.as_p()
+        context['form'] = form
         return context
 
 

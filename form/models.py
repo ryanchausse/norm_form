@@ -34,7 +34,7 @@ class NormForm(models.Model):
     name = models.CharField(max_length=60, blank=True, null=True)
     patient = models.ForeignKey(Patient, default=None, on_delete=models.CASCADE, blank=True, null=True)
     facility = models.ForeignKey(Facility, default=None, on_delete=models.CASCADE, blank=True, null=True)
-    date = models.DateTimeField(auto_now_add=True, blank=True)
+    date = models.DateField(blank=True)
 
     # Subjective
     chief_complaints_problems_history = models.CharField(max_length=50000, blank=True, null=True, default='')
@@ -176,7 +176,7 @@ class NormForm(models.Model):
     appetite_change_notes = models.CharField(max_length=50000, blank=True, null=True, default='')
 
     # Misc
-    appetite_change_tobacco_screen = models.BooleanField(default=False)
+    tobacco_screen = models.BooleanField(default=False)
     tele_health = models.BooleanField(default=False)
 
     # Assessment
