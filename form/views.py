@@ -49,28 +49,29 @@ class NormFormPage(TemplateView):
         context = super().get_context_data(**kwargs)
         if self.request.user.groups.filter(name='Admins').exists():
             context['user_is_in_admins'] = True
+            form = NormFormForm()
+            context['form'] = form
         else:
             context['user_is_in_admins'] = False
-        form = NormFormForm()
-        context['form'] = form
+            context['form'] = None
         return context
 
 
-class ManagerPage(TemplateView):
+class ViewNormFormsPage(TemplateView):
     """
-    Front desk / manager page to list normforms
+    View previously submitted Norm Forms
     """
-    template_name = 'manager.html'
+    template_name = 'view_norm_forms.html'
 
-    def get(self, request, *args, **kwargs):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         if self.request.user.groups.filter(name='Admins').exists():
-            context = self.get_context_data(**kwargs)
+            context['user_is_in_admins'] = True
             context['norm_forms'] = NormForm.objects.all().order_by('-created_at')
-            return render(request,
-                          template_name=self.template_name,
-                          context=context)
         else:
-            return redirect('/index.html')
+            context['user_is_in_admins'] = False
+            context['norm_forms'] = None
+        return context
 
 
 def handler404(request, exception, template_name="404.html"):

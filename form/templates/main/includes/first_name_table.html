@@ -7,17 +7,20 @@
                 Welcome to Norm's Form, {{ user.first_name }}
             </p>
             {% if user_is_in_admins %}
-                <!--<p>
-                    You are a <a href="./manager">manager</a>.
-                </p>-->
                 <p>
-                    You have access to edit <a href="./admin">data</a>.
+                    You have access to edit <a href="./admin">data</a>
                 </p>
                 <p>
-                    Add a <a href="./admin/form/facility/add/">facility</a>.
+                    View submitted <a href="./view_norm_forms">forms</a>
                 </p>
                 <p>
-                    Add a <a href="./admin/form/patient/add/">patient</a>.
+                    Submit a new <a href="./">form</a>
+                </p>
+                <p>
+                    Add a <a href="./admin/form/facility/add/">facility</a>
+                </p>
+                <p>
+                    Add a <a href="./admin/form/patient/add/">patient</a>
                 </p>
             {% endif %}
         </div>
