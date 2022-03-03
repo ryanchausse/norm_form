@@ -1,3 +1,4 @@
+import requests
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from django.core.mail import send_mail
@@ -45,11 +46,15 @@ class NormFormPage(TemplateView):
     """
     template_name = 'index.html'
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, pk=None, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.user.groups.filter(name='Admins').exists():
             context['user_is_in_admins'] = True
-            form = NormFormForm()
+            if pk:
+                norm_form = NormForm.objects.get(id=pk)
+                form = NormFormForm(initial=model_to_dict(norm_form))
+            else:
+                form = NormFormForm()
             context['form'] = form
         else:
             context['user_is_in_admins'] = False

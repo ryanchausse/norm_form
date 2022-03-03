@@ -19,8 +19,9 @@ from . import views
 
 urlpatterns = [
     path('', views.NormFormPage.as_view(), name='form'),
+    path('index.html', views.NormFormPage.as_view(), name='index'),
+    path('<int:pk>', views.NormFormPage.as_view(), name='index'),
     path('form/', views.NormFormPage.as_view(), name='form'),
     path('submit_form', views.SubmitNormForm.as_view(), name='submit_form'),
-    path('index.html', views.NormFormPage.as_view(), name='index'),
     path('view_norm_forms', views.ViewNormFormsPage.as_view(), name='view_norm_forms'),
 ]
