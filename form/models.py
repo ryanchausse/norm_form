@@ -1,10 +1,17 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 from django.core.validators import ValidationError
 from django.db.models import Q
 
 
 class Facility(models.Model):
     name = models.CharField(max_length=1000, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    created_by = models.ForeignKey(get_user_model(),
+                                   null=True,
+                                   blank=True,
+                                   on_delete=models.SET_NULL)
 
     def __str__(self):
         return f'{self.name}'
@@ -21,6 +28,10 @@ class Patient(models.Model):
     facility = models.ForeignKey(Facility, default=None, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    created_by = models.ForeignKey(get_user_model(),
+                                   null=True,
+                                   blank=True,
+                                   on_delete=models.SET_NULL)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
@@ -190,9 +201,12 @@ class NormForm(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    created_by = models.ForeignKey(get_user_model(),
+                                   null=True,
+                                   on_delete=models.SET_NULL)
 
     def __str__(self):
-        return self.name
+        return f'{self.date} - {self.patient} - {self.facility}' if not self.name else f'{self.name}'
 
     class Meta:
         verbose_name = 'Norm Form'

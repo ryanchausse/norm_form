@@ -13,6 +13,8 @@ from django.conf import settings
 from .models import Patient
 from .models import NormForm
 from .forms import NormFormForm
+from django.contrib.auth import get_user_model
+from django.contrib import messages
 
 
 class SubmitNormForm(TemplateView):
@@ -22,14 +24,19 @@ class SubmitNormForm(TemplateView):
         context = self.get_context_data(**kwargs)
         # create a form instance and populate it with data from the request:
         form = NormFormForm(request.POST)
-        # check whether it's valid:
         if form.is_valid():
-            # process the data in form.cleaned_data as required
-            print(form.cleaned_data)
-            print('received.')
+            form_to_save = form.save(commit=False)
+            form_to_save.created_by = request.user
+            form_to_save.save()
+            messages.add_message(request, messages.SUCCESS, 'Successfully saved form')
+            print('saved successfully')
             return redirect('/')
-        request.session.flush()
-        return redirect('/index.html')
+        else:
+            print('form is not valid')
+            print(form.errors)
+            messages.add_message(request, messages.WARNING, 'Form not valid')
+        # request.session.flush()
+        return redirect('/')
 
 
 class NormFormPage(TemplateView):
