@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.core.validators import ValidationError
@@ -45,7 +47,7 @@ class NormForm(models.Model):
     name = models.CharField(max_length=60, blank=True, null=True)
     patient = models.ForeignKey(Patient, default=None, on_delete=models.CASCADE, blank=True, null=True)
     facility = models.ForeignKey(Facility, default=None, on_delete=models.CASCADE, blank=True, null=True)
-    date = models.DateField(blank=True)
+    date = models.DateField(blank=True, default=datetime.date.today)
 
     # Subjective
     chief_complaints_problems_history = models.CharField(max_length=50000, blank=True, null=True, default='')
@@ -199,6 +201,7 @@ class NormForm(models.Model):
 
     signature = models.CharField(max_length=500, blank=True, null=True, default='')
 
+    filename = models.CharField(max_length=1000, blank=True, null=True, default='')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(get_user_model(),

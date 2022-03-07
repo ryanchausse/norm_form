@@ -166,5 +166,5 @@ class NormFormForm(forms.ModelForm):
 
     class Meta:
         model = NormForm
-        exclude = ['created_by']
+        exclude = ['created_by', 'filename']
 

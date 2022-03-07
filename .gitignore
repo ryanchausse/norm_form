@@ -120,3 +120,4 @@ GitHub.sublime-settings
 norm/settings.py
 .current_prod_apache_configuration
 form/templates/static/admin
+form/patient_files/*

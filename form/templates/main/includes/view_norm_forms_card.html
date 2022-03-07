@@ -19,6 +19,7 @@
                             <th>Patient</th>
                             <th>Facility</th>
                             <th>Date</th>
+                            <th>PDF</th>
                             <th>New Form Link</th>
                         </tr>
                     </thead>
@@ -27,6 +28,7 @@
                             <th>Patient</th>
                             <th>Facility</th>
                             <th>Date</th>
+                            <th>PDF</th>
                             <th>New Form Link</th>
                         </tr>
                     </tfoot>
@@ -37,6 +39,7 @@
                                     <td>{{ norm_form.patient }}</td>
                                     <td>{{ norm_form.facility }}</td>
                                     <td>{{ norm_form.date }}</td>
+                                    <td><a href="/get_pdf/{{ norm_form.id }}" target="_blank">{{ norm_form.filename }}</a></td>
                                     <td><a href="/{{ norm_form.id }}">View / Submit Another</a></td>
                                 </tr>
                             {% endfor %}
