@@ -52,8 +52,6 @@ class SubmitNormForm(TemplateView):
             pdf = canvas.Canvas(filename=os.path.abspath(os.path.dirname(__file__)) + '/patient_files/' + filename,
                                 pagesize=letter)
             width, height = letter
-            # pdf.drawString(5, 5, f'Date: {date} Patient: {patient} '
-            #                      f'Facility: {facility} Time printed: {datetime.datetime.now()}')
             pdf.setLineWidth(.3)
             pdf.setFont('Helvetica', 12)
             pdf.setTitle(filename)
@@ -66,6 +64,9 @@ class SubmitNormForm(TemplateView):
             pdf.drawString(30, 703, 'RECEIVED BY:')
             pdf.line(120, 700, 580, 700)
             pdf.drawString(120, 703, form_to_save.signature)
+            pdf.setFont('Helvetica', 8)
+            pdf.drawString(5, 5, f'Date: {form_to_save.date} Patient: {form_to_save.patient} '
+                                 f'Facility: {form_to_save.facility} Time printed: {datetime.datetime.now()}')
             pdf.showPage()
             pdf.save()
             return redirect('/')
