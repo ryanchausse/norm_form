@@ -52,6 +52,7 @@ class SubmitNormForm(TemplateView):
             pdf = canvas.Canvas(filename=os.path.abspath(os.path.dirname(__file__)) + '/patient_files/' + filename,
                                 pagesize=letter)
             width, height = letter
+            # Width = 612(px?), Height = 792
             pdf.setLineWidth(.3)
             pdf.setFont('Helvetica', 12)
             pdf.setTitle(filename)
