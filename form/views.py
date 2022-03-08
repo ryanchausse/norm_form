@@ -64,8 +64,16 @@ class SubmitNormForm(TemplateView):
             # Intro demographic info and Subjective section
             pdf.setFont('Helvetica', 10)
             pdf.drawString(30, 730, 'Patient Name:')
-            pdf.drawString(280, 730, 'Facility:')
+            pdf.setFont('Helvetica-Bold', 10)
+            pdf.drawString(97, 730, f'{form_to_save.patient.last_name}, {form_to_save.patient.first_name}')
+            pdf.setFont('Helvetica', 10)
+            pdf.drawString(300, 730, 'Facility:')
+            pdf.setFont('Helvetica-Bold', 10)
+            pdf.drawString(337, 730, f'{form_to_save.facility.name}')
+            pdf.setFont('Helvetica', 10)
             pdf.drawString(480, 730, 'Date:')
+            pdf.setFont('Helvetica-Bold', 10)
+            pdf.drawString(505, 730, f'{form_to_save.date}')
             pdf.setFont('Helvetica-Bold', 10)
             pdf.drawString(30, 710, 'Subjective (Chief Complaints, Presenting Problems, and History):')
             if form_to_save.chief_complaints_problems_history:
