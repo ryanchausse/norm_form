@@ -888,9 +888,8 @@ class SubmitNormForm(TemplateView):
             # Disclaimer
             pdf.drawString(380, 20, '[1] If in agreement with PCP, Risk-Benefit Analysis, IDT. RP')
 
-            pdf.setFont('Helvetica', 8)
-            pdf.drawString(5, 5, f'Date: {str(datetime.date.today())} Patient: SampleFirst SampleLast'
-                                 f'Facility: Sample Hospital Time printed: {str(datetime.datetime.now())}')
+            pdf.setFont('Helvetica', 6)
+            pdf.drawString(5, 5, f'Time printed: {str(datetime.datetime.now())}')
             pdf.showPage()
             pdf.save()
             return redirect('/')
