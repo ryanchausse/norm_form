@@ -45,9 +45,11 @@ class NormFormDocTemplate(BaseDocTemplate):
         print(self.height)  # 821.89
         print(self.width)  # 565.28
         frame_top = Frame(self.leftMargin, self.bottomMargin, self.width, self.height, id='frame_top')
-        frame_left = Frame(self.leftMargin, -158, 115, self.height, id='frame_left')
-        frame_right = Frame(self.leftMargin + 110, -155, 450, self.height, id='frame_right')
-        self.addPageTemplates([PageTemplate(id='First', frames=[frame_top, frame_left, frame_right], pagesize=self.pagesize)])
+        frame_left = Frame(self.leftMargin, -125, 115, self.height, id='frame_left')
+        frame_right = Frame(self.leftMargin + 110, -123, 450, self.height, id='frame_right')
+        frame_bottom = Frame(self.leftMargin, self.bottomMargin, 7 * inch, 3 * inch, id='frame_bottom')
+        self.addPageTemplates([PageTemplate(id='First', frames=[frame_top, frame_left, frame_right, frame_bottom],
+                                            pagesize=self.pagesize)])
         BaseDocTemplate.build(self, flowables)
 
 
@@ -81,7 +83,7 @@ def build_form():
                                        fontSize=9, alignment=TA_LEFT))
     story.append(p)
 
-    story.append(Spacer(0, 0.7 * inch))
+    story.append(Spacer(0, 0.3 * inch))
 
     p = Paragraph(f'Mental Status Examination',
                   style=ParagraphStyle(name='Normal', fontName='Helvetica',
@@ -116,7 +118,7 @@ def build_form():
                   'Insight & Judgment<br /><br />'
                   'Sleep Disturbance<br /><br />'
                   'Appetite change',
-                  style=ParagraphStyle(name='Normal', fontName='Helvetica',
+                  style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
                                        fontSize=8, alignment=TA_RIGHT))
     story.append(p)
 
@@ -175,7 +177,8 @@ def build_form():
             'Gestures', UncheckedBox(),
             'Threatening Behaviors', UncheckedBox()
     ]]
-    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=None)
+    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+                                                                       None, None, None, 2.5*inch])
     story.append(t)
 
     # Separate tables needed for formatting / length overruns on vertically justified columns
@@ -185,7 +188,8 @@ def build_form():
              'Poorly Groomed', UncheckedBox(),
              'Disheveled', UncheckedBox()
     ]]
-    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=None)
+    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+                                                                       None, None, None, 2*inch])
     story.append(t)
 
     data = [[# 'Treatment & Compliance:',
@@ -196,14 +200,285 @@ def build_form():
              'Exit Seeking', UncheckedBox(),
              'Wandering', UncheckedBox()
     ]]
-    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=None)
+    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+                                                                       None, None, None, None,
+                                                                       None, None, None, 0.5*inch])
     story.append(t)
 
     data = [[# 'Inappropriate Behavior:',
-             'Inappropriate Behavior', UncheckedBox(),
-             'Describe:', ' ', ' ', ' ', ' ']]
-    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=None)
+            'Inappropriate Behavior', UncheckedBox(),
+            # 'Describe:', 'dawdadawdawdawdawdadwawdawdaw324252342342342342342342342342',
+            'Describe:', 'test describe text'
+    ]]
+    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, 4*inch])
     story.append(t)
+
+    data = [[# 'Attitude:',
+             'Cooperative', CheckedBox(),
+             'Uncooperative', UncheckedBox(),
+             'Marginally Cooperative', UncheckedBox(),
+             'Describe:', 'test describe text'
+    ]]
+    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+                                                                       None, None, None, 2*inch])
+    story.append(t)
+
+    data = [[# 'Speech:',
+        'Intact', CheckedBox(),
+        'Pressured', UncheckedBox(),
+        'Hyperverbal', UncheckedBox(),
+        'Loud', UncheckedBox(),
+        'Slow', UncheckedBox(),
+        'Yelling Out', UncheckedBox(),
+        'Perseverative', UncheckedBox()
+    ]]
+    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT)
+    story.append(t)
+
+    data = [[# 'Verbal Abilities:',
+        Paragraph('Receptive Language:', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                       fontSize=8, alignment=TA_RIGHT)),
+        '',
+        'Sufficient', UncheckedBox(),
+        'Impaired', UncheckedBox(),
+        Paragraph('Expressive Language:', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                       fontSize=8, alignment=TA_RIGHT)),
+        '',
+        'Sufficient', UncheckedBox(),
+        'Impaired', UncheckedBox(),
+    ]]
+    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT,
+              colWidths=[1.5*inch, 0.01*inch, None, None,
+                         None, None, 1.5*inch, 0.01*inch,
+                         None, None, None, 0.65*inch]
+              )
+    story.append(t)
+
+    data = [[# 'Communication:',
+        'Verbal', CheckedBox(),
+        'Non-verbal', UncheckedBox(),
+        'Minimally Verbal', UncheckedBox(),
+        'Withdrawn', UncheckedBox(),
+        'Avoidant', UncheckedBox(),
+        'Evasive', UncheckedBox(),
+    ]]
+    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+                                                                       None, None, None, None,
+                                                                       None, None, None, inch])
+    story.append(t)
+
+    data = [[# 'Perceptual Disturbances:',
+        'None', CheckedBox(),
+        'Hallucinations', UncheckedBox(),
+        'Visual', UncheckedBox(),
+        'Auditory', UncheckedBox(),
+        'Command', UncheckedBox(),
+        'Tactile', UncheckedBox(),
+        'Olfactory', UncheckedBox(),
+    ]]
+    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+                                                                       None, None, None, None,
+                                                                       None, None, None, None,
+                                                                       None, 0.5*inch])
+    story.append(t)
+
+    data = [[# 'Level of Consciousness:',
+        'Alert', CheckedBox(),
+        'Confused', UncheckedBox(),
+        'Drowsy', UncheckedBox(),
+        'Somnolent', UncheckedBox(),
+        'Fluctuating', UncheckedBox(),
+    ]]
+    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+                                                                       None, None, None, None,
+                                                                       None, 2*inch])
+    story.append(t)
+
+    data = [[# 'Thought Process:',
+        'Linear', CheckedBox(),
+        'Disorganized', UncheckedBox(),
+        'Fragmented', UncheckedBox(),
+        'Racing', UncheckedBox(),
+        'Circumstantial', UncheckedBox(),
+        'Tangential', UncheckedBox(),
+        'Blocking', UncheckedBox(),
+    ]]
+    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+                                                                       None, None, None, None,
+                                                                       None, None, None, None,
+                                                                       None, 0.1 * inch])
+    story.append(t)
+
+    data = [[# 'Thought Content:',
+        'Normal', CheckedBox(),
+        'Delusions', UncheckedBox(),
+        'Persecutory', UncheckedBox(),
+        'Grandiose', UncheckedBox(),
+        'Religious', UncheckedBox(),
+        'Self-Referential', UncheckedBox(),
+        'Poverty of Content', UncheckedBox(),
+    ]]
+    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, 0.17 * inch, None, 0.17 * inch,
+                                                                       None, 0.17 * inch, None, 0.17 * inch,
+                                                                       None, 0.17 * inch, None, 0.17 * inch,
+                                                                       None, 0.19 * inch])
+    story.append(t)
+
+    data = [[# 'Mood:',
+        'Euthymic', CheckedBox(),
+        'Depressed', UncheckedBox(),
+        'Anxious', UncheckedBox(),
+        'Irritable', UncheckedBox(),
+        'Angry', UncheckedBox(),
+        'Tearful', UncheckedBox(),
+        'Elated', UncheckedBox(),
+        'Labile', UncheckedBox(),
+    ]]
+    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+                                                                       None, None, None, None,
+                                                                       None, None, None, None,
+                                                                       None, None, None, 0.25 * inch])
+    story.append(t)
+
+    data = [[# 'Affect:',
+        'Appropriate', CheckedBox(),
+        'Flat', UncheckedBox(),
+        'Blunted', UncheckedBox(),
+        'Expansive', UncheckedBox(),
+        'Agitated', UncheckedBox()
+    ]]
+    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+                                                                       None, None, None, None,
+                                                                       None, 2.4 * inch])
+    story.append(t)
+
+    data = [[# 'Harmfulness:',
+        'Self', CheckedBox(),
+        'Others', UncheckedBox(),
+        'Negative Statements', UncheckedBox(),
+        'Describe: ', 'test describe text',
+    ]]
+    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+                                                                       None, None, None, 2.8 * inch])
+    story.append(t)
+
+    data = [[# 'Attention & Concentration:',
+        'Good', CheckedBox(),
+        'Fair', UncheckedBox(),
+        'Poor', UncheckedBox(),
+    ]]
+    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+                                                                       None, 4.5 * inch])
+    story.append(t)
+
+    data = [[# 'Orientation:',
+        'Time', CheckedBox(),
+        'Place', UncheckedBox(),
+        'Person', UncheckedBox(),
+        'Disoriented', UncheckedBox(),
+    ]]
+    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+                                                                       None, None, None, 3.4 * inch])
+    story.append(t)
+
+    data = [[# 'Insight & Judgment:',
+        'Good', CheckedBox(),
+        'Fair', UncheckedBox(),
+        'Poor', UncheckedBox()
+    ]]
+    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+                                                                       None, 4.5 * inch])
+    story.append(t)
+
+    data = [[# 'Sleep Disturbances:',
+        'Disturbance', CheckedBox(),
+        'Apnea', UncheckedBox(),
+        'Narcolepsy', UncheckedBox(),
+        'Nightmares', UncheckedBox(),
+        'Hypnagogic / Hypnopompic Hallucinations', UncheckedBox(),
+    ]]
+    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+                                                                       None, None, None, None,
+                                                                       None, 0.4 * inch])
+    story.append(t)
+
+    data = [[# 'Appetite Change:',
+        'No', CheckedBox(),
+        'Yes', UncheckedBox(),
+        'Describe:', 'test describe text',
+        'Tobacco Screen', UncheckedBox(),
+        'Tele-Health', UncheckedBox(),
+    ]]
+    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+                                                                       None, 2.35*inch, None, None,
+                                                                       None, None])
+    story.append(t)
+
+    story.append(FrameBreak)
+
+    p = Paragraph(f'Assessment:',
+                  style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                       fontSize=10, alignment=TA_LEFT))
+    story.append(p)
+
+    p = Paragraph(f'Diagnostic Impression:',
+                  style=ParagraphStyle(name='Normal', leftIndent=5, fontName='Helvetica-Bold',
+                                       fontSize=9, alignment=TA_LEFT))
+    story.append(p)
+
+    p = Paragraph(f'Insert diagnostic impression text here',
+                  style=ParagraphStyle(name='Normal', leftIndent=15, fontName='Helvetica',
+                                       fontSize=9, alignment=TA_LEFT))
+    story.append(p)
+
+    story.append(Spacer(0, 0.30 * inch))
+
+    p = Paragraph(f'Plan:',
+                  style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                       fontSize=10, alignment=TA_LEFT))
+    story.append(p)
+
+    p = Paragraph(f'Current Medication:',
+                  style=ParagraphStyle(name='Normal', leftIndent=5, fontName='Helvetica-Bold',
+                                       fontSize=9, alignment=TA_LEFT))
+    story.append(p)
+
+    p = Paragraph(f'Insert current medication text here',
+                  style=ParagraphStyle(name='Normal', leftIndent=15, fontName='Helvetica',
+                                       fontSize=9, alignment=TA_LEFT))
+    story.append(p)
+
+    story.append(Spacer(0, 0.2 * inch))
+
+    p = Paragraph(f'Discussion and Treatment Considerations:',
+                  style=ParagraphStyle(name='Normal', leftIndent=5, fontName='Helvetica-Bold',
+                                       fontSize=9, alignment=TA_LEFT))
+    story.append(p)
+
+    p = Paragraph(f'Insert discussion and treatment consideration text here. '
+                  f'Also, test the word wrap functionality to ensure the maximum width of the available space '
+                  f'is being filled.',
+                  style=ParagraphStyle(name='Normal', leftIndent=15, fontName='Helvetica',
+                                       fontSize=9, alignment=TA_LEFT))
+    story.append(p)
+
+    story.append(Spacer(0, 0.35 * inch))
+
+    p = Paragraph(
+        f'Signature:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Norm Hendricksen',
+        style=ParagraphStyle(name='Normal', leftIndent=0, fontName='Helvetica-Bold',
+                             fontSize=9, alignment=TA_LEFT))
+    story.append(p)
+
+    p = Paragraph(
+        f'Norman Hendricksen, Ph.D. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+        f'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+        f'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+        f'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+        f'[1] If in agreement with PCP, Risk-Benefit Analysis, IDT, RP',
+        style=ParagraphStyle(name='Normal', leftIndent=64, fontName='Helvetica',
+                             fontSize=9, alignment=TA_LEFT))
+    story.append(p)
 
     # doc.build(story, onFirstPage=first_page)
     doc.build(story)
