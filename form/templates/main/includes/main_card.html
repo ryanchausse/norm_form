@@ -15,7 +15,7 @@
             <form action="/submit_form" method="post">
                 {% csrf_token %}
 
-                <div class="mx-auto" style="width: 570px;">
+                <div class="mx-auto" style="width: 100%;">
                     <h2 class="text-dark">Psychologist Consultation / Follow-Up</h2>
                 </div>
                 <br />
@@ -31,7 +31,7 @@
                                 <label for="{{ form.name.id_for_label }}">Name:</label>
                             </td>
                             <td>
-                                {{ form.name }}
+                                <div style="width:100%;">{{ form.name }}</div>
                             </td>
                         </tr>
                         <tr>
