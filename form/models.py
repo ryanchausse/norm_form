@@ -70,6 +70,7 @@ class NormForm(models.Model):
     treat_and_compliance_resistive = models.BooleanField(default=False)
     treat_and_compliance_argumentative = models.BooleanField(default=False)
     treat_and_compliance_exit_seeking = models.BooleanField(default=False)
+    treat_and_compliance_wandering = models.BooleanField(default=False)
     treat_and_compliance_notes = models.CharField(max_length=50000, blank=True, null=True, default='')
 
     inappropriate_behavior = models.BooleanField(default=False)

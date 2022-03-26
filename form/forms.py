@@ -33,6 +33,7 @@ class NormFormForm(forms.ModelForm):
     treat_and_compliance_resistive = forms.BooleanField(required=False)
     treat_and_compliance_argumentative = forms.BooleanField(required=False)
     treat_and_compliance_exit_seeking = forms.BooleanField(required=False)
+    treat_and_compliance_wandering = forms.BooleanField(required=False)
     treat_and_compliance_notes = forms.CharField(required=False, max_length=50000, widget=forms.Textarea(attrs={'cols': 30, 'rows': 3}))
 
     inappropriate_behavior = forms.BooleanField(required=False)

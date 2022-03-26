@@ -197,7 +197,7 @@ def build_form(form_to_save=None, filename=None):
              'Resistive', CheckedBox() if form_to_save.treat_and_compliance_resistive else UncheckedBox(),
              'Argumentative', CheckedBox() if form_to_save.treat_and_compliance_argumentative else UncheckedBox(),
              'Exit Seeking', CheckedBox() if form_to_save.treat_and_compliance_exit_seeking else UncheckedBox(),
-             'Wandering', CheckedBox() if form_to_save.agg_behavior_physical else UncheckedBox()
+             'Wandering', CheckedBox() if form_to_save.treat_and_compliance_wandering else UncheckedBox()
     ]]
     t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
                                                                        None, None, None, None,
