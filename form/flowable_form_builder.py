@@ -204,21 +204,37 @@ def build_form(form_to_save=None, filename=None):
                                                                        None, None, None, 0.5*inch])
     story.append(t)
 
-    data = [[# 'Inappropriate Behavior:',
+    if form_to_save.inappropriate_behavior_notes:
+        data = [[# 'Inappropriate Behavior:',
+                'Inappropriate Behavior', CheckedBox() if form_to_save.inappropriate_behavior else UncheckedBox(),
+                'Describe:', f'{form_to_save.inappropriate_behavior_notes}'
+        ]]
+        t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, 4*inch])
+        story.append(t)
+    else:
+        data = [[# 'Inappropriate Behavior:',
             'Inappropriate Behavior', CheckedBox() if form_to_save.inappropriate_behavior else UncheckedBox(),
-            'Describe:', f'test describe text'
-    ]]
-    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, 4*inch])
-    story.append(t)
+            ' ', ' '
+        ]]
+        t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, 4 * inch])
+        story.append(t)
 
-    data = [[# 'Attitude:',
-             'Cooperative', CheckedBox() if form_to_save.attitude_cooperative else UncheckedBox(),
-             'Uncooperative', CheckedBox() if form_to_save.attitude_uncooperative else UncheckedBox(),
-             'Marginally Cooperative', CheckedBox() if form_to_save.attitude_marginally_cooperative else UncheckedBox(),
-             'Describe:', 'test describe text'
-    ]]
+    if form_to_save.attitude_notes:
+        data = [[# 'Attitude:',
+                 'Cooperative', CheckedBox() if form_to_save.attitude_cooperative else UncheckedBox(),
+                 'Uncooperative', CheckedBox() if form_to_save.attitude_uncooperative else UncheckedBox(),
+                 'Marginally Cooperative', CheckedBox() if form_to_save.attitude_marginally_cooperative else UncheckedBox(),
+                 'Describe:', f'{form_to_save.attitude_notes}'
+        ]]
+    else:
+        data = [[# 'Attitude:',
+            'Cooperative', CheckedBox() if form_to_save.attitude_cooperative else UncheckedBox(),
+            'Uncooperative', CheckedBox() if form_to_save.attitude_uncooperative else UncheckedBox(),
+            'Marginally Cooperative', CheckedBox() if form_to_save.attitude_marginally_cooperative else UncheckedBox(),
+            ' ', ' '
+        ]]
     t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
-                                                                       None, None, None, 2*inch])
+                                                                       None, None, None, None])
     story.append(t)
 
     data = [[# 'Speech:',
@@ -227,10 +243,14 @@ def build_form(form_to_save=None, filename=None):
         'Hyperverbal', CheckedBox() if form_to_save.speech_hyperverbal else UncheckedBox(),
         'Loud', CheckedBox() if form_to_save.speech_loud else UncheckedBox(),
         'Slow', CheckedBox() if form_to_save.speech_slow else UncheckedBox(),
+        'Unintelligible', CheckedBox() if form_to_save.speech_unintelligible else UncheckedBox(),
         'Yelling Out', CheckedBox() if form_to_save.speech_yelling_out else UncheckedBox(),
         'Perseverative', CheckedBox() if form_to_save.speech_perseverative else UncheckedBox()
     ]]
-    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT)
+    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, 0.5*inch, None,
+                                                                       0.6*inch, None, 0.24*inch, None,
+                                                                       0.24*inch, None, None, None,
+                                                                       None, None, None, None])
     story.append(t)
 
     data = [[# 'Verbal Abilities:',
@@ -350,12 +370,20 @@ def build_form(form_to_save=None, filename=None):
                                                                        None, 2.4 * inch])
     story.append(t)
 
-    data = [[# 'Harmfulness:',
-        'Self', CheckedBox() if form_to_save.harmfulness_self else UncheckedBox(),
-        'Others', CheckedBox() if form_to_save.harmfulness_others else UncheckedBox(),
-        'Negative Statements', CheckedBox() if form_to_save.harmfulness_negative_statements else UncheckedBox(),
-        'Describe: ', 'test describe text',
-    ]]
+    if form_to_save.harmfulness_notes:
+        data = [[# 'Harmfulness:',
+            'Self', CheckedBox() if form_to_save.harmfulness_self else UncheckedBox(),
+            'Others', CheckedBox() if form_to_save.harmfulness_others else UncheckedBox(),
+            'Negative Statements', CheckedBox() if form_to_save.harmfulness_negative_statements else UncheckedBox(),
+            'Describe: ', f'{form_to_save.harmfulness_notes}'
+        ]]
+    else:
+        data = [[# 'Harmfulness:',
+            'Self', CheckedBox() if form_to_save.harmfulness_self else UncheckedBox(),
+            'Others', CheckedBox() if form_to_save.harmfulness_others else UncheckedBox(),
+            'Negative Statements', CheckedBox() if form_to_save.harmfulness_negative_statements else UncheckedBox(),
+            ' ', ' '
+        ]]
     t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
                                                                        None, None, None, 2.8 * inch])
     story.append(t)
@@ -400,13 +428,22 @@ def build_form(form_to_save=None, filename=None):
                                                                        None, 0.4 * inch])
     story.append(t)
 
-    data = [[# 'Appetite Change:',
-        'No', CheckedBox() if form_to_save.appetite_change else UncheckedBox(),
-        'Yes', CheckedBox() if form_to_save.appetite_change else UncheckedBox(),
-        'Describe:', 'test describe text',
-        'Tobacco Screen', CheckedBox() if form_to_save.tobacco_screen else UncheckedBox(),
-        'Tele-Health', CheckedBox() if form_to_save.tele_health else UncheckedBox(),
-    ]]
+    if form_to_save.appetite_change_notes:
+        data = [[# 'Appetite Change:',
+            'No', CheckedBox() if form_to_save.appetite_change_no else UncheckedBox(),
+            'Yes', CheckedBox() if form_to_save.appetite_change_yes else UncheckedBox(),
+            'Describe: ', f'{form_to_save.appetite_change_notes}',
+            'Tobacco Screen', CheckedBox() if form_to_save.tobacco_screen else UncheckedBox(),
+            'Tele-Health', CheckedBox() if form_to_save.tele_health else UncheckedBox(),
+        ]]
+    else:
+        data = [[# 'Appetite Change:',
+            'No', CheckedBox() if form_to_save.appetite_change_no else UncheckedBox(),
+            'Yes', CheckedBox() if form_to_save.appetite_change_yes else UncheckedBox(),
+            ' ', ' ',
+            'Tobacco Screen', CheckedBox() if form_to_save.tobacco_screen else UncheckedBox(),
+            'Tele-Health', CheckedBox() if form_to_save.tele_health else UncheckedBox(),
+        ]]
     t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
                                                                        None, 2.35*inch, None, None,
                                                                        None, None])

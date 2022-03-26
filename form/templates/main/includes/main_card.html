@@ -181,6 +181,11 @@
                             {{ form.treat_and_compliance_exit_seeking }}
                         </div>
                         <div class="fieldWrapper">
+                            {{ form.treat_and_compliance_wandering.errors }}
+                            <label for="{{ form.treat_and_compliance_wandering.id_for_label }}">Exit seeking</label>
+                            {{ form.treat_and_compliance_wandering }}
+                        </div>
+                        <div class="fieldWrapper">
                             {{ form.treat_and_compliance_notes.errors }}
                             <label for="{{ form.treat_and_compliance_notes.id_for_label }}">Treatment & Compliance notes:</label>
                             <br />
@@ -779,6 +784,16 @@
                             {{ form.sleep_disturbance_narcolepsy }}
                         </div>
                         <div class="fieldWrapper">
+                            {{ form.sleep_disturbance_nightmares.errors }}
+                            <label for="{{ form.sleep_disturbance_nightmares.id_for_label }}">Nightmares</label>
+                            {{ form.sleep_disturbance_nightmares }}
+                        </div>
+                        <div class="fieldWrapper">
+                            {{ form.sleep_disturbance_hypnagogic_hypnopompic_hallucinations.errors }}
+                            <label for="{{ form.sleep_disturbance_hypnagogic_hypnopompic_hallucinations.id_for_label }}">Hypnagogic / Hypnopompic Hallucinations</label>
+                            {{ form.sleep_disturbance_hypnagogic_hypnopompic_hallucinations }}
+                        </div>
+                        <div class="fieldWrapper">
                             {{ form.sleep_disturbance_describe.errors }}
                             <label for="{{ form.sleep_disturbance_describe.id_for_label }}">Describe</label>
                             {{ form.sleep_disturbance_describe }}
@@ -796,9 +811,14 @@
                     <p style="font-size:1.1em">Appetite Change</p>
                     <div class="indent_checkboxes" style="margin-left:1em; margin-bottom:1em;">
                         <div class="fieldWrapper">
-                            {{ form.appetite_change.errors }}
-                            <label for="{{ form.appetite_change.id_for_label }}">Appetite Change</label>
-                            {{ form.appetite_change }}
+                            {{ form.appetite_change_no.errors }}
+                            <label for="{{ form.appetite_change_no.id_for_label }}">No</label>
+                            {{ form.appetite_change_no }}
+                        </div>
+                        <div class="fieldWrapper">
+                            {{ form.appetite_change_yes.errors }}
+                            <label for="{{ form.appetite_change_yes.id_for_label }}">Yes</label>
+                            {{ form.appetite_change_yes }}
                         </div>
                         <div class="fieldWrapper">
                             {{ form.appetite_change_notes.errors }}
