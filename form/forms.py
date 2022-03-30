@@ -37,13 +37,13 @@ class NormFormForm(forms.ModelForm):
     treat_and_compliance_notes = forms.CharField(required=False, max_length=50000, widget=forms.Textarea(attrs={'cols': 30, 'rows': 3}))
 
     inappropriate_behavior = forms.BooleanField(required=False)
-    inappropriate_behavior_notes = forms.CharField(required=False, max_length=50000, widget=forms.Textarea(attrs={'cols': 30, 'rows': 3}))
+    inappropriate_behavior_notes = forms.CharField(required=False, max_length=50000)
 
     attitude_cooperative = forms.BooleanField(required=False)
     attitude_uncooperative = forms.BooleanField(required=False)
     attitude_marginally_cooperative = forms.BooleanField(required=False)
     attitude_other = forms.BooleanField(required=False)
-    attitude_notes = forms.CharField(required=False, max_length=50000, widget=forms.Textarea(attrs={'cols': 30, 'rows': 3}))
+    attitude_notes = forms.CharField(required=False, max_length=50000)
 
     speech_intact = forms.BooleanField(required=False)
     speech_pressured = forms.BooleanField(required=False)
@@ -124,7 +124,7 @@ class NormFormForm(forms.ModelForm):
     harmfulness_others = forms.BooleanField(required=False)
     harmfulness_negative_statements = forms.BooleanField(required=False)
     harmfulness_other = forms.BooleanField(required=False)
-    harmfulness_notes = forms.CharField(required=False, max_length=50000, widget=forms.Textarea(attrs={'cols': 30, 'rows': 3}))
+    harmfulness_notes = forms.CharField(required=False, max_length=50000)
 
     attention_concentration_good = forms.BooleanField(required=False)
     attention_concentration_fair = forms.BooleanField(required=False)
@@ -153,7 +153,7 @@ class NormFormForm(forms.ModelForm):
 
     appetite_change_no = forms.BooleanField(required=False)
     appetite_change_yes = forms.BooleanField(required=False)
-    appetite_change_notes = forms.CharField(required=False, max_length=50000, widget=forms.Textarea(attrs={'cols': 30, 'rows': 3}))
+    appetite_change_notes = forms.CharField(required=False, max_length=50000)
 
     # Misc
     tobacco_screen = forms.BooleanField(required=False)
