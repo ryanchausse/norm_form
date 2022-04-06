@@ -43,6 +43,42 @@ class Patient(models.Model):
         verbose_name_plural = 'Patients'
 
 
+class SubjectiveOption(models.Model):
+    name = models.CharField(max_length=1000, null=True)
+    full_text = models.CharField(max_length=1000, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    created_by = models.ForeignKey(get_user_model(),
+                                   null=True,
+                                   blank=True,
+                                   on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return f'{self.name}'
+
+    class Meta:
+        verbose_name = 'Subjective Option'
+        verbose_name_plural = 'Subjective Options'
+
+
+class DiscussionTreatmentOption(models.Model):
+    name = models.CharField(max_length=1000, null=True)
+    full_text = models.CharField(max_length=1000, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    created_by = models.ForeignKey(get_user_model(),
+                                   null=True,
+                                   blank=True,
+                                   on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return f'{self.name}'
+
+    class Meta:
+        verbose_name = 'Discussion and Treatment Option'
+        verbose_name_plural = 'Discussion and Treatment Options'
+
+
 class NormForm(models.Model):
     name = models.CharField(max_length=60, blank=True, null=True)
     patient = models.ForeignKey(Patient, default=None, on_delete=models.CASCADE, blank=True, null=True)
@@ -50,6 +86,7 @@ class NormForm(models.Model):
     date = models.DateField(blank=True, default=datetime.date.today)
 
     # Subjective
+    subjective_options = models.ManyToManyField(SubjectiveOption, blank=True)
     chief_complaints_problems_history = models.CharField(max_length=50000, blank=True, null=True, default='')
 
     # Objective - staff / other sources reported
@@ -201,6 +238,7 @@ class NormForm(models.Model):
 
     # Plan
     current_medication = models.CharField(max_length=50000, blank=True, null=True, default='')
+    discussion_treatment_options = models.ManyToManyField(DiscussionTreatmentOption, blank=True)
     discussion_treatment = models.CharField(max_length=50000, blank=True, null=True, default='')
 
     signature = models.CharField(max_length=500, blank=True, null=True, default='')

@@ -25,7 +25,10 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfbase.pdfmetrics import stringWidth
 from django.http.response import FileResponse
+from django.http.response import JsonResponse
 from . import flowable_form_builder
+from .models import SubjectiveOption
+from .models import DiscussionTreatmentOption
 
 
 class SubmitNormForm(TemplateView):
@@ -108,6 +111,28 @@ def get_pdf_page(request, pk=None):
                                      '/patient_files/' +
                                      norm_form.filename, 'rb'), content_type='application/pdf')
     return redirect('/')
+
+
+def get_subjective_option_text(request, pk=None):
+    """
+    Get value of a given SubjectiveOption via pk id
+    """
+    if request.user.groups.filter(name='Admins').exists() and pk:
+        subjective_option = SubjectiveOption.objects.get(id=pk)
+        if subjective_option.full_text:
+            return JsonResponse(subjective_option.full_text, safe=False)
+    return False
+
+
+def get_discussion_treatment_option_text(request, pk=None):
+    """
+    Get value of a given DiscussionTreatmentOption via pk id
+    """
+    if request.user.groups.filter(name='Admins').exists() and pk:
+        discussion_treatment_option = DiscussionTreatmentOption.objects.get(id=pk)
+        if discussion_treatment_option.full_text:
+            return JsonResponse(discussion_treatment_option.full_text)
+    return False
 
 
 def handler404(request, exception, template_name="404.html"):

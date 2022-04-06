@@ -4,6 +4,8 @@ from .models import NormForm
 import datetime
 from .models import Patient
 from .models import Facility
+from .models import SubjectiveOption
+from .models import DiscussionTreatmentOption
 
 
 class NormFormForm(forms.ModelForm):
@@ -13,6 +15,7 @@ class NormFormForm(forms.ModelForm):
     date = forms.DateField(initial=datetime.date.today())
 
     # Subjective
+    subjective_options = forms.ModelMultipleChoiceField(queryset=SubjectiveOption.objects.all(), required=False)
     chief_complaints_problems_history = forms.CharField(required=False, max_length=50000, widget=forms.Textarea(attrs={'cols': 30, 'rows': 7}))
 
     # Objective - staff / other sources reported
@@ -160,6 +163,7 @@ class NormFormForm(forms.ModelForm):
     tele_health = forms.BooleanField(required=False)
 
     # Assessment
+    discussion_treatment_options = forms.ModelMultipleChoiceField(queryset=DiscussionTreatmentOption.objects.all(), required=False)
     diagnostic_impression = forms.CharField(required=False, max_length=50000, widget=forms.Textarea(attrs={'cols': 30, 'rows': 7}))
 
     # Plan
