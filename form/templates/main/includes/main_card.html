@@ -12,7 +12,7 @@
     {% endif %}
     {% if user.is_authenticated and user_is_in_admins %}
         <div class="card-body">
-            <form action="/submit_form" method="post">
+            <form id='form_to_submit' action="/submit_form" method="post">
                 {% csrf_token %}
 
                 <div class="mx-auto" style="width: 100%;">
@@ -928,34 +928,36 @@
             </form>
         </div>
         <script type="text/javascript">
-            $("#id_subjective_options").change(function () {
+            $("#id_subjective_options").change(function() {
+                console.log($(this).val());
+                var id_list = String($(this).val());
                 $.ajax({
-                    url: "/api/v1/subjective_option/1",
-                    type: 'GET',
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    processData: false,
-                    data: '',
+                    url: "{% url 'subjective_option' %}",
+                    type: "get",
+                    dataType: "json",
+                    contentType: "application/json",
+                    processData: true,
+                    data: {"ids": id_list},
                     success: function (data) {
-                      //alert(JSON.stringify(data));
-                      document.getElementById("id_chief_complaints_problems_history").append(data);
+                        document.getElementById("id_chief_complaints_problems_history").value = data;
                     },
                     error: function(){
                       alert("Cannot get data");
                     }
                 });
             });
-            $("#id_discussion_treatment_options").change(function () {
+            $("#id_discussion_treatment_options").change(function() {
+                console.log($(this).val());
+                var id_list = String($(this).val());
                 $.ajax({
-                    url: "/api/v1/discussion_treatment_option/1",
-                    type: 'GET',
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    processData: false,
-                    data: '',
+                    url: "{% url 'discussion_treatment_option' %}",
+                    type: "get",
+                    dataType: "json",
+                    contentType: "application/json",
+                    processData: true,
+                    data: {"ids": id_list},
                     success: function (data) {
-                      //alert(JSON.stringify(data));
-                      document.getElementById("id_discussion_treatment").append(data);
+                        document.getElementById("id_discussion_treatment").value = data;
                     },
                     error: function(){
                       alert("Cannot get data");

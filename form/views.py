@@ -1,12 +1,13 @@
 import datetime
 import uuid
-
+import json
 import requests
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.views.generic import TemplateView
+from django.views.generic import View
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.template import RequestContext
@@ -113,26 +114,44 @@ def get_pdf_page(request, pk=None):
     return redirect('/')
 
 
-def get_subjective_option_text(request, pk=None):
+def get_subjective_option_text(request):
     """
-    Get value of a given SubjectiveOption via pk id
+    Get value of a given SubjectiveOption via $.AJAX in main_card
     """
-    if request.user.groups.filter(name='Admins').exists() and pk:
-        subjective_option = SubjectiveOption.objects.get(id=pk)
-        if subjective_option.full_text:
-            return JsonResponse(subjective_option.full_text, safe=False)
-    return False
+    if not request.user.groups.filter(name='Admins').exists():
+        return redirect('/')
+    if 'ids' in request.GET and request.GET.get('ids'):
+        ids = request.GET.get('ids').split(',')
+    else:
+        return JsonResponse('', safe=False)
+    if request.is_ajax():
+        subjective_options = SubjectiveOption.objects.filter(id__in=ids)
+        response_text = ''
+        for subjective_option in subjective_options:
+            if subjective_option.full_text:
+                response_text += subjective_option.full_text + ' '
+        return JsonResponse(response_text, safe=False)
+    return redirect('/')
 
 
-def get_discussion_treatment_option_text(request, pk=None):
+def get_discussion_treatment_option_text(request):
     """
-    Get value of a given DiscussionTreatmentOption via pk id
+    Get value of a given DiscussionTreatmentOption via $.AJAX() in main_card
     """
-    if request.user.groups.filter(name='Admins').exists() and pk:
-        discussion_treatment_option = DiscussionTreatmentOption.objects.get(id=pk)
-        if discussion_treatment_option.full_text:
-            return JsonResponse(discussion_treatment_option.full_text)
-    return False
+    if not request.user.groups.filter(name='Admins').exists():
+        return redirect('/')
+    if 'ids' not in request.GET or request.GET.get('ids'):
+        ids = request.GET.get('ids').split(',')
+    else:
+        return JsonResponse('', safe=False)
+    if request.is_ajax():
+        discussion_treatment_options = DiscussionTreatmentOption.objects.filter(id__in=ids)
+        response_text = ''
+        for discussion_treatment_option in discussion_treatment_options:
+            if discussion_treatment_option.full_text:
+                response_text += discussion_treatment_option.full_text + ' '
+        return JsonResponse(response_text, safe=False)
+    return redirect('/')
 
 
 def handler404(request, exception, template_name="404.html"):

@@ -25,6 +25,6 @@ urlpatterns = [
     path('form/', views.NormFormPage.as_view(), name='form'),
     path('submit_form', views.SubmitNormForm.as_view(), name='submit_form'),
     path('view_norm_forms', views.ViewNormFormsPage.as_view(), name='view_norm_forms'),
-    path('api/v1/subjective_option/<int:pk>', views.get_subjective_option_text, name='get_pdf_page'),
-    path('api/v1/discussion_treatment_option/<int:pk>', views.get_discussion_treatment_option_text, name='get_pdf_page'),
+    path('api/v1/subjective_option', views.get_subjective_option_text, name='subjective_option'),
+    path('api/v1/discussion_treatment_option', views.get_discussion_treatment_option_text, name='discussion_treatment_option'),
 ]
