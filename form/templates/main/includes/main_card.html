@@ -71,6 +71,13 @@
 
                 <div class="fieldWrapper">
                     {{ form.subjective_options.errors }}
+                    <label for="{{ form.subjective_boilerplate_options.id_for_label }}">Subjective Boilerplate Drop-Downs</label>
+                    <br />
+                    {{ form.subjective_boilerplate_options }}
+                </div>
+
+                <div class="fieldWrapper">
+                    {{ form.subjective_options.errors }}
                     <label for="{{ form.subjective_options.id_for_label }}">Subjective Drop-Downs</label>
                     <br />
                     {{ form.subjective_options }}
@@ -933,6 +940,24 @@
             </form>
         </div>
         <script type="text/javascript">
+            $("#id_subjective_boilerplate_options").change(function() {
+                console.log($(this).val());
+                var id_list = String($(this).val());
+                $.ajax({
+                    url: "{% url 'subjective_boilerplate_option' %}",
+                    type: "get",
+                    dataType: "json",
+                    contentType: "application/json",
+                    processData: true,
+                    data: {"ids": id_list},
+                    success: function (data) {
+                        document.getElementById("id_chief_complaints_problems_history").value = data;
+                    },
+                    error: function(){
+                      alert("Cannot get data");
+                    }
+                });
+            });
             $("#id_subjective_options").change(function() {
                 console.log($(this).val());
                 var id_list = String($(this).val());
@@ -944,7 +969,7 @@
                     processData: true,
                     data: {"ids": id_list},
                     success: function (data) {
-                        document.getElementById("id_chief_complaints_problems_history").value = data;
+                        document.getElementById("id_chief_complaints_problems_history").value += '-' + data;
                     },
                     error: function(){
                       alert("Cannot get data");

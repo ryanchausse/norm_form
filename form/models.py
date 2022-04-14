@@ -43,6 +43,24 @@ class Patient(models.Model):
         verbose_name_plural = 'Patients'
 
 
+class SubjectiveBoilerplateOption(models.Model):
+    name = models.CharField(max_length=1000, null=True)
+    full_text = models.CharField(max_length=1000, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    created_by = models.ForeignKey(get_user_model(),
+                                   null=True,
+                                   blank=True,
+                                   on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return f'{self.name}'
+
+    class Meta:
+        verbose_name = 'Subjective Boilerplate Option'
+        verbose_name_plural = 'Subjective Boilerplate Options'
+
+
 class SubjectiveOption(models.Model):
     name = models.CharField(max_length=1000, null=True)
     full_text = models.CharField(max_length=1000, null=True)

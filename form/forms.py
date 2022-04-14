@@ -4,6 +4,7 @@ from .models import NormForm
 import datetime
 from .models import Patient
 from .models import Facility
+from .models import SubjectiveBoilerplateOption
 from .models import SubjectiveOption
 from .models import DiscussionTreatmentOption
 
@@ -15,6 +16,7 @@ class NormFormForm(forms.ModelForm):
     date = forms.DateField(initial=datetime.date.today())
 
     # Subjective
+    subjective_boilerplate_options = forms.ModelMultipleChoiceField(queryset=SubjectiveBoilerplateOption.objects.all(), required=False)
     subjective_options = forms.ModelMultipleChoiceField(queryset=SubjectiveOption.objects.all(), required=False)
     chief_complaints_problems_history = forms.CharField(required=False, max_length=50000, widget=forms.Textarea(attrs={'cols': 30, 'rows': 7}))
 

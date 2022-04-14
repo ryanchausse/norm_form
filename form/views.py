@@ -28,6 +28,7 @@ from reportlab.pdfbase.pdfmetrics import stringWidth
 from django.http.response import FileResponse
 from django.http.response import JsonResponse
 from . import flowable_form_builder
+from .models import SubjectiveBoilerplateOption
 from .models import SubjectiveOption
 from .models import DiscussionTreatmentOption
 
@@ -111,6 +112,26 @@ def get_pdf_page(request, pk=None):
             return FileResponse(open(os.path.abspath(os.path.dirname(__file__)) +
                                      '/patient_files/' +
                                      norm_form.filename, 'rb'), content_type='application/pdf')
+    return redirect('/')
+
+
+def get_subjective_boilerplate_option_text(request):
+    """
+    Get value of a given SubjectiveBoilerplateOption via $.AJAX in main_card
+    """
+    if not request.user.groups.filter(name='Admins').exists():
+        return redirect('/')
+    if 'ids' in request.GET and request.GET.get('ids'):
+        ids = request.GET.get('ids').split(',')
+    else:
+        return JsonResponse('', safe=False)
+    if request.is_ajax():
+        subjective_boilerplate_options = SubjectiveBoilerplateOption.objects.filter(id__in=ids)
+        response_text = ''
+        for subjective_boilerplate_option in subjective_boilerplate_options:
+            if subjective_boilerplate_option.full_text:
+                response_text += subjective_boilerplate_option.full_text + ' '
+        return JsonResponse(response_text, safe=False)
     return redirect('/')
 
 
