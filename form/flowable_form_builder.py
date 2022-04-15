@@ -610,9 +610,11 @@ def build_form(form_to_save=None, filename=None):
     # story.append(p)
 
     # Signature file name
-    filename = os.path.abspath(os.path.dirname(__file__)) + '/private_images/' + \
-                                                            'signature' + str(random.randint(1, 18)) + '.png'
-    i = Image(filename=filename, hAlign=TA_LEFT)
+    filename = os.path.abspath(os.path.dirname(__file__)) + '/private_images/' +\
+                                                            'signature' +\
+                                                            str(random.randint(1, 18)) +\
+                                                            '.png'
+    i = Image(filename=filename, hAlign=TA_LEFT, height=50)
     story.append(i)
 
     p = Paragraph(
