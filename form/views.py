@@ -50,7 +50,7 @@ class SubmitNormForm(TemplateView):
             form_to_save.filename = f'{form_to_save.date} - {form_to_save.patient} - ' \
                                     f'{form_to_save.facility} ' + str(uuid.uuid4()) + '.pdf'
             form_to_save.save()
-            messages.add_message(request, messages.SUCCESS, 'Successfully saved form')
+            messages.add_message(request, messages.SUCCESS, 'Successfully saved form. <a href="/view_norm_forms">See saved forms</a>')
             print('saved successfully')
 
             # Save to PDF

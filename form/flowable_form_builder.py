@@ -7,7 +7,7 @@ from reportlab.platypus import BaseDocTemplate, PageBreak, FrameBreak, Frame
 import random
 import os
 import csv
-from form.models import Icd10Codes
+from .models import Icd10Codes
 
 width, height = letter
 pageinfo = "Dr. Hendricksen evaluation form"
