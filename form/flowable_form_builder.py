@@ -262,7 +262,7 @@ def build_form(form_to_save=None, filename=None):
     ]]
     t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
               colWidths=[None, None, None, None,
-                         None, None, None, 3.5*inch])
+                         None, None, None, 3.7 * inch])
     story.append(t)
 
     # Separate tables needed for formatting / length overruns on vertically justified columns
@@ -272,8 +272,9 @@ def build_form(form_to_save=None, filename=None):
              CheckedBox() if form_to_save.gen_appearance_poorly_groomed else UncheckedBox(), 'Poorly Groomed',
              CheckedBox() if form_to_save.gen_appearance_disheveled else UncheckedBox(), 'Disheveled',
     ]]
-    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
-                                                                       None, None, None, 2*inch])
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
+              colWidths=[None, None, None, None,
+                         None, None, None, 2.6 * inch])
     story.append(t)
 
     data = [[# 'Treatment & Compliance:',
@@ -284,9 +285,10 @@ def build_form(form_to_save=None, filename=None):
              CheckedBox() if form_to_save.treat_and_compliance_exit_seeking else UncheckedBox(), 'Exit Seeking',
              CheckedBox() if form_to_save.treat_and_compliance_wandering else UncheckedBox(), 'Wandering',
     ]]
-    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
-                                                                       None, None, None, None,
-                                                                       None, None, None, 0.5*inch])
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
+              colWidths=[None, None, None, None,
+                         None, None, None, None,
+                         None, None, None, 1.07 * inch])
     story.append(t)
 
     if form_to_save.inappropriate_behavior_notes:
@@ -294,14 +296,16 @@ def build_form(form_to_save=None, filename=None):
                 CheckedBox() if form_to_save.inappropriate_behavior else UncheckedBox(), 'Inappropriate Behavior',
                 'Describe:', f'{form_to_save.inappropriate_behavior_notes}'
         ]]
-        t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, 4*inch])
+        t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
+                  colWidths=[None, None, None, 4.57 * inch])
         story.append(t)
     else:
         data = [[# 'Inappropriate Behavior:',
             CheckedBox() if form_to_save.inappropriate_behavior else UncheckedBox(), 'Inappropriate Behavior',
             ' ', ' ',
         ]]
-        t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, 4 * inch])
+        t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
+                  colWidths=[None, None, None, 4.57 * inch])
         story.append(t)
 
     if form_to_save.attitude_notes:
@@ -318,8 +322,9 @@ def build_form(form_to_save=None, filename=None):
             CheckedBox() if form_to_save.attitude_marginally_cooperative else UncheckedBox(), 'Marginally Cooperative',
             ' ', ' ',
         ]]
-    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
-                                                                       None, None, None, None])
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
+              colWidths=[None, None, None, None,
+                         None, None, None, 2.51 * inch])
     story.append(t)
 
     data = [[# 'Speech:',
@@ -332,10 +337,11 @@ def build_form(form_to_save=None, filename=None):
         CheckedBox() if form_to_save.speech_yelling_out else UncheckedBox(), 'Yelling Out',
         CheckedBox() if form_to_save.speech_perseverative else UncheckedBox(), 'Perseverative',
     ]]
-    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, 0.5*inch, None,
-                                                                       0.6*inch, None, 0.24*inch, None,
-                                                                       0.24*inch, None, None, None,
-                                                                       None, None, None, None])
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
+              colWidths=[0.2 * inch, 0.4 * inch, 0.17 * inch, 0.58 * inch,
+                         0.17 * inch, 0.7 * inch, 0.17 * inch, 0.32 * inch,
+                         0.17 * inch, 0.32 * inch, 0.17 * inch, 0.72 * inch,
+                         0.17 * inch, 0.62 * inch, 0.17 * inch, None])
     story.append(t)
 
     data = [[# 'Verbal Abilities:',
@@ -351,9 +357,9 @@ def build_form(form_to_save=None, filename=None):
         CheckedBox() if form_to_save.verbal_abilities_expressive_language_impaired else UncheckedBox(), 'Impaired',
     ]]
     t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
-              colWidths=[1.5*inch, 0.01*inch, None, None,
-                         None, None, 1.5*inch, 0.01*inch,
-                         None, None, None, 0.65*inch]
+              colWidths=[1.5 * inch, None, 0.1 * inch, None,
+                         None, None, 1.5 * inch, None,
+                         0.1 * inch, None, None, 1.15 * inch]
               )
     story.append(t)
 
@@ -365,9 +371,10 @@ def build_form(form_to_save=None, filename=None):
         CheckedBox() if form_to_save.communication_avoidant else UncheckedBox(), 'Avoidant',
         CheckedBox() if form_to_save.communication_evasive else UncheckedBox(), 'Evasive',
     ]]
-    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
-                                                                       None, None, None, None,
-                                                                       None, None, None, inch])
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
+              colWidths=[None, None, None, None,
+                         None, None, None, None,
+                         None, None, None, 1.5 * inch])
     story.append(t)
 
     data = [[# 'Perceptual Disturbances:',
@@ -379,10 +386,11 @@ def build_form(form_to_save=None, filename=None):
         CheckedBox() if form_to_save.perceptual_disturbances_tactile else UncheckedBox(), 'Tactile',
         CheckedBox() if form_to_save.perceptual_disturbances_olfactory else UncheckedBox(), 'Olfactory',
     ]]
-    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
-                                                                       None, None, None, None,
-                                                                       None, None, None, None,
-                                                                       None, 0.5*inch])
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
+              colWidths=[None, None, None, None,
+                         None, None, None, None,
+                         None, None, None, None,
+                         None, 1.25 * inch])
     story.append(t)
 
     data = [[# 'Level of Consciousness:',
@@ -392,9 +400,10 @@ def build_form(form_to_save=None, filename=None):
         CheckedBox() if form_to_save.level_of_consciousness_somnolent else UncheckedBox(), 'Somnolent',
         CheckedBox() if form_to_save.level_of_consciousness_fluctuating else UncheckedBox(), 'Fluctuating',
     ]]
-    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
-                                                                       None, None, None, None,
-                                                                       None, 2*inch])
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
+              colWidths=[None, None, None, None,
+                         None, None, None, None,
+                         None, 2.87 * inch])
     story.append(t)
 
     data = [[# 'Thought Process:',
@@ -406,10 +415,11 @@ def build_form(form_to_save=None, filename=None):
         CheckedBox() if form_to_save.thought_process_tangential else UncheckedBox(), 'Tangential',
         CheckedBox() if form_to_save.thought_process_blocking else UncheckedBox(), 'Blocking',
     ]]
-    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
-                                                                       None, None, None, None,
-                                                                       None, None, None, None,
-                                                                       None, 0.1 * inch])
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
+              colWidths=[None, None, None, None,
+                         None, None, None, None,
+                         None, None, None, None,
+                         None, 0.62 * inch])
     story.append(t)
 
     data = [[# 'Thought Content:',
@@ -421,10 +431,11 @@ def build_form(form_to_save=None, filename=None):
         CheckedBox() if form_to_save.thought_content_self_referential else UncheckedBox(), 'Self-Referential',
         CheckedBox() if form_to_save.thought_content_poverty_of_content else UncheckedBox(), 'Poverty of Content',
     ]]
-    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, 0.17 * inch, None, 0.17 * inch,
-                                                                       None, 0.17 * inch, None, 0.17 * inch,
-                                                                       None, 0.17 * inch, None, 0.17 * inch,
-                                                                       None, 0.19 * inch])
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
+              colWidths=[0.17 * inch, 0.5 * inch, 0.17 * inch, 0.6 * inch,
+                         0.17 * inch, 0.7 * inch, 0.17 * inch, 0.6 * inch,
+                         0.17 * inch, 0.6 * inch, 0.17 * inch, 0.9 * inch,
+                         0.19 * inch, 0.89 * inch])
     story.append(t)
 
     data = [[# 'Mood:',
@@ -437,10 +448,11 @@ def build_form(form_to_save=None, filename=None):
         CheckedBox() if form_to_save.mood_elated else UncheckedBox(), 'Elated',
         CheckedBox() if form_to_save.mood_labile else UncheckedBox(), 'Labile',
     ]]
-    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
-                                                                       None, None, None, None,
-                                                                       None, None, None, None,
-                                                                       None, None, None, 0.25 * inch])
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
+              colWidths=[None, None, None, None,
+                         None, None, None, None,
+                         None, None, None, None,
+                         None, None, None, 0.67 * inch])
     story.append(t)
 
     data = [[# 'Affect:',
@@ -450,9 +462,10 @@ def build_form(form_to_save=None, filename=None):
         CheckedBox() if form_to_save.affect_expansive else UncheckedBox(), 'Expansive',
         CheckedBox() if form_to_save.affect_agitated else UncheckedBox(), 'Agitated',
     ]]
-    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
-                                                                       None, None, None, None,
-                                                                       None, 2.4 * inch])
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
+              colWidths=[None, None, None, None,
+                         None, None, None, None,
+                         None, 2.82 * inch])
     story.append(t)
 
     if form_to_save.harmfulness_notes:
@@ -469,8 +482,9 @@ def build_form(form_to_save=None, filename=None):
             CheckedBox() if form_to_save.harmfulness_negative_statements else UncheckedBox(), 'Negative Statements',
             ' ', ' '
         ]]
-    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
-                                                                       None, None, None, 2.8 * inch])
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
+              colWidths=[None, None, None, None,
+                         None, None, None, 3.38 * inch])
     story.append(t)
 
     data = [[# 'Attention & Concentration:',
@@ -478,8 +492,9 @@ def build_form(form_to_save=None, filename=None):
         CheckedBox() if form_to_save.attention_concentration_fair else UncheckedBox(), 'Fair',
         CheckedBox() if form_to_save.attention_concentration_poor else UncheckedBox(), 'Poor',
     ]]
-    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
-                                                                       None, 4.5 * inch])
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
+              colWidths=[None, None, None, None,
+                         None, 4.72 * inch])
     story.append(t)
 
     data = [[# 'Orientation:',
@@ -488,8 +503,9 @@ def build_form(form_to_save=None, filename=None):
         CheckedBox() if form_to_save.orientation_person else UncheckedBox(), 'Person',
         CheckedBox() if form_to_save.orientation_disoriented else UncheckedBox(), 'Disoriented',
     ]]
-    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
-                                                                       None, None, None, 3.4 * inch])
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
+              colWidths=[None, None, None, None,
+                         None, None, None, 3.94 * inch])
     story.append(t)
 
     data = [[# 'Insight & Judgment:',
@@ -497,8 +513,9 @@ def build_form(form_to_save=None, filename=None):
         CheckedBox() if form_to_save.insight_judgement_fair else UncheckedBox(), 'Fair',
         CheckedBox() if form_to_save.insight_judgement_poor else UncheckedBox(), 'Poor',
     ]]
-    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
-                                                                       None, 4.5 * inch])
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
+              colWidths=[None, None, None, None,
+                         None, 4.71 * inch])
     story.append(t)
 
     data = [[# 'Sleep Disturbances:',
@@ -508,9 +525,10 @@ def build_form(form_to_save=None, filename=None):
         CheckedBox() if form_to_save.agg_behavior_physical else UncheckedBox(), 'Nightmares',
         CheckedBox() if form_to_save.agg_behavior_physical else UncheckedBox(), 'Hypnagogic / Hypnopompic Hallucinations',
     ]]
-    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
-                                                                       None, None, None, None,
-                                                                       None, 0.4 * inch])
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
+              colWidths=[None, None, None, None,
+                         None, None, None, None,
+                         None, 2.41 * inch])
     story.append(t)
 
     if form_to_save.appetite_change_notes:
@@ -518,20 +536,20 @@ def build_form(form_to_save=None, filename=None):
             CheckedBox() if form_to_save.appetite_change_no else UncheckedBox(), 'No',
             CheckedBox() if form_to_save.appetite_change_yes else UncheckedBox(), 'Yes',
             'Describe: ', f'{form_to_save.appetite_change_notes}',
-            CheckedBox() if form_to_save.tobacco_screen else UncheckedBox(), 'Tobacco Screen',
-            CheckedBox() if form_to_save.tele_health else UncheckedBox(), 'Tele-Health',
+            # CheckedBox() if form_to_save.tobacco_screen else UncheckedBox(), 'Tobacco Screen',
+            # CheckedBox() if form_to_save.tele_health else UncheckedBox(), 'Tele-Health',
         ]]
     else:
         data = [[# 'Appetite Change:',
             CheckedBox() if form_to_save.appetite_change_no else UncheckedBox(), 'No',
             CheckedBox() if form_to_save.appetite_change_yes else UncheckedBox(), 'Yes',
             ' ', ' ',
-            CheckedBox() if form_to_save.tobacco_screen else UncheckedBox(), 'Tobacco Screen',
-            CheckedBox() if form_to_save.tele_health else UncheckedBox(), 'Tele-Health',
+            # CheckedBox() if form_to_save.tobacco_screen else UncheckedBox(), 'Tobacco Screen',
+            # CheckedBox() if form_to_save.tele_health else UncheckedBox(), 'Tele-Health',
         ]]
-    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
-                                                                       None, 2.35*inch, None, None,
-                                                                       None, None])
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
+              colWidths=[None, None, None, None,
+                         None, 4.94 * inch])
     story.append(t)
 
     story.append(FrameBreak)
