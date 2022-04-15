@@ -1,9 +1,11 @@
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, Flowable, PageTemplate
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, Flowable, PageTemplate, Image
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.units import inch
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT
 from reportlab.platypus import BaseDocTemplate, PageBreak, FrameBreak, Frame
+import random
+import os
 
 width, height = letter
 pageinfo = "Dr. Hendricksen evaluation form"
@@ -36,10 +38,12 @@ class NormFormDocTemplate(BaseDocTemplate):
         print(self.height)  # 821.89
         print(self.width)  # 565.28
         frame_top = Frame(self.leftMargin, self.bottomMargin, self.width, self.height, id='frame_top')
-        frame_left = Frame(self.leftMargin, -125, 115, self.height, id='frame_left')
-        frame_right = Frame(self.leftMargin + 110, -123, 450, self.height, id='frame_right')
-        frame_bottom = Frame(self.leftMargin, self.bottomMargin, 7 * inch, 3 * inch, id='frame_bottom')
-        self.addPageTemplates([PageTemplate(id='First', frames=[frame_top, frame_left, frame_right, frame_bottom],
+        frame_mental_status = Frame(self.leftMargin, -115, self.width, self.height, id='frame_mental_status')
+        frame_left = Frame(self.leftMargin, -142, 115, self.height, id='frame_left')
+        frame_right = Frame(self.leftMargin + 110, -147, 450, self.height, id='frame_right')
+        frame_bottom = Frame(self.leftMargin, self.bottomMargin, 7 * inch, 4.7 * inch, id='frame_bottom')
+        self.addPageTemplates([PageTemplate(id='First', frames=[frame_top, frame_mental_status, frame_left, frame_right,
+                                                                frame_bottom],
                                             pagesize=self.pagesize)])
         BaseDocTemplate.build(self, flowables)
 
@@ -82,7 +86,7 @@ def build_form(form_to_save=None, filename=None):
                                            fontSize=9, alignment=TA_LEFT))
         story.append(p)
 
-    story.append(Spacer(0, 0.3 * inch))
+    story.append(FrameBreak)
 
     p = Paragraph(f'Mental Status Examination',
                   style=ParagraphStyle(name='Normal', fontName='Helvetica',
@@ -97,28 +101,108 @@ def build_form(form_to_save=None, filename=None):
 
     story.append(FrameBreak)
 
-    p = Paragraph('Aggressive Behavior<br /><br />'
-                  'General Appearance<br /><br />'
-                  'Treatment & Compliance<br /><br />'
-                  'Inappropriate Behavior<br /><br />'
-                  'Attitude<br /><br />'
-                  'Speech<br /><br />'
-                  'Verbal Abilities<br /><br />'
-                  'Communication<br /><br />'
-                  'Perceptual Disturbances<br /><br />'
-                  'Level of Consciousness<br /><br />'
-                  'Thought Process<br /><br />'
-                  'Thought Content<br /><br />'
-                  'Mood<br /><br />'
-                  'Affect<br /><br />'
-                  'Harmfulness<br /><br />'
-                  'Attention & Concentration<br /><br />'
-                  'Orientation<br /><br />'
-                  'Insight & Judgment<br /><br />'
-                  'Sleep Disturbance<br /><br />'
-                  'Appetite change',
-                  style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
-                                       fontSize=8, alignment=TA_RIGHT))
+    # p = Paragraph('Aggressive Behavior<br /><br />'
+    #               'General Appearance<br /><br />'
+    #               'Treatment & Compliance<br /><br />'
+    #               'Inappropriate Behavior<br /><br />'
+    #               'Attitude<br /><br />'
+    #               'Speech<br /><br />'
+    #               'Verbal Abilities<br /><br />'
+    #               'Communication<br /><br />'
+    #               'Perceptual Disturbances<br /><br />'
+    #               'Level of Consciousness<br /><br />'
+    #               'Thought Process<br /><br />'
+    #               'Thought Content<br /><br />'
+    #               'Mood<br /><br />'
+    #               'Affect<br /><br />'
+    #               'Harmfulness<br /><br />'
+    #               'Attention & Concentration<br /><br />'
+    #               'Orientation<br /><br />'
+    #               'Insight & Judgment<br /><br />'
+    #               'Sleep Disturbance<br /><br />'
+    #               'Appetite change',
+    #               style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+    #                                    fontSize=8, alignment=TA_RIGHT))
+    # story.append(p)
+
+    p = Paragraph('Aggressive Behavior', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                                              fontSize=8, alignment=TA_RIGHT))
+    story.append(p)
+    story.append(Spacer(0, 0.05 * inch))
+    p = Paragraph('General Appearance', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                                              fontSize=8, alignment=TA_RIGHT))
+    story.append(p)
+    story.append(Spacer(0, 0.05 * inch))
+    p = Paragraph('Treatment & Compliance', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                                             fontSize=8, alignment=TA_RIGHT))
+    story.append(p)
+    story.append(Spacer(0, 0.06 * inch))
+    p = Paragraph('Inappropriate Behavior', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                                             fontSize=8, alignment=TA_RIGHT))
+    story.append(p)
+    story.append(Spacer(0, 0.05 * inch))
+    p = Paragraph('Attitude', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                                             fontSize=8, alignment=TA_RIGHT))
+    story.append(p)
+    story.append(Spacer(0, 0.06 * inch))
+    p = Paragraph('Speech', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                                             fontSize=8, alignment=TA_RIGHT))
+    story.append(p)
+    story.append(Spacer(0, 0.06 * inch))
+    p = Paragraph('Verbal Abilities', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                                             fontSize=8, alignment=TA_RIGHT))
+    story.append(p)
+    story.append(Spacer(0, 0.06 * inch))
+    p = Paragraph('Communication', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                                             fontSize=8, alignment=TA_RIGHT))
+    story.append(p)
+    story.append(Spacer(0, 0.05 * inch))
+    p = Paragraph('Perceptual Disturbances', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                                             fontSize=8, alignment=TA_RIGHT))
+    story.append(p)
+    story.append(Spacer(0, 0.06 * inch))
+    p = Paragraph('Level of Consciousness', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                                             fontSize=8, alignment=TA_RIGHT))
+    story.append(p)
+    story.append(Spacer(0, 0.05 * inch))
+    p = Paragraph('Thought Process', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                                             fontSize=8, alignment=TA_RIGHT))
+    story.append(p)
+    story.append(Spacer(0, 0.06 * inch))
+    p = Paragraph('Thought Content', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                                             fontSize=8, alignment=TA_RIGHT))
+    story.append(p)
+    story.append(Spacer(0, 0.06 * inch))
+    p = Paragraph('Mood', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                                             fontSize=8, alignment=TA_RIGHT))
+    story.append(p)
+    story.append(Spacer(0, 0.05 * inch))
+    p = Paragraph('Affect', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                                             fontSize=8, alignment=TA_RIGHT))
+    story.append(p)
+    story.append(Spacer(0, 0.06 * inch))
+    p = Paragraph('Harmfulness', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                                             fontSize=8, alignment=TA_RIGHT))
+    story.append(p)
+    story.append(Spacer(0, 0.06 * inch))
+    p = Paragraph('Attention & Concentration', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                                             fontSize=8, alignment=TA_RIGHT))
+    story.append(p)
+    story.append(Spacer(0, 0.05 * inch))
+    p = Paragraph('Orientation', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                                             fontSize=8, alignment=TA_RIGHT))
+    story.append(p)
+    story.append(Spacer(0, 0.05 * inch))
+    p = Paragraph('Insight & Judgment', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                                             fontSize=8, alignment=TA_RIGHT))
+    story.append(p)
+    story.append(Spacer(0, 0.06 * inch))
+    p = Paragraph('Sleep Disturbance', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                                             fontSize=8, alignment=TA_RIGHT))
+    story.append(p)
+    story.append(Spacer(0, 0.05 * inch))
+    p = Paragraph('Appetite Change', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                                             fontSize=8, alignment=TA_RIGHT))
     story.append(p)
 
     story.append(FrameBreak)
@@ -171,13 +255,14 @@ def build_form(form_to_save=None, filename=None):
 
     data = [[# 'Aggressive Behavior:',
         # Eventually, do CheckedBox() if {{ physical }} else UncheckedBox
-            'Physical', CheckedBox() if form_to_save.agg_behavior_physical else UncheckedBox(),
-            'Verbal', CheckedBox() if form_to_save.agg_behavior_verbal else UncheckedBox(),
-            'Gestures', CheckedBox() if form_to_save.agg_behavior_gestures else UncheckedBox(),
-            'Threatening Behaviors', CheckedBox() if form_to_save.agg_behavior_threatening else UncheckedBox(),
+            CheckedBox() if form_to_save.agg_behavior_physical else UncheckedBox(), 'Physical',
+            CheckedBox() if form_to_save.agg_behavior_verbal else UncheckedBox(), 'Verbal',
+            CheckedBox() if form_to_save.agg_behavior_gestures else UncheckedBox(), 'Gestures',
+            CheckedBox() if form_to_save.agg_behavior_threatening else UncheckedBox(), 'Threatening Behaviors',
     ]]
-    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
-                                                                       None, None, None, 2.5*inch])
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
+              colWidths=[None, None, None, None,
+                         None, None, None, 3.5*inch])
     story.append(t)
 
     # Separate tables needed for formatting / length overruns on vertically justified columns
@@ -187,7 +272,7 @@ def build_form(form_to_save=None, filename=None):
              'Poorly Groomed', CheckedBox() if form_to_save.gen_appearance_poorly_groomed else UncheckedBox(),
              'Disheveled', CheckedBox() if form_to_save.gen_appearance_disheveled else UncheckedBox()
     ]]
-    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
                                                                        None, None, None, 2*inch])
     story.append(t)
 
@@ -199,7 +284,7 @@ def build_form(form_to_save=None, filename=None):
              'Exit Seeking', CheckedBox() if form_to_save.treat_and_compliance_exit_seeking else UncheckedBox(),
              'Wandering', CheckedBox() if form_to_save.treat_and_compliance_wandering else UncheckedBox()
     ]]
-    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
                                                                        None, None, None, None,
                                                                        None, None, None, 0.5*inch])
     story.append(t)
@@ -209,14 +294,14 @@ def build_form(form_to_save=None, filename=None):
                 'Inappropriate Behavior', CheckedBox() if form_to_save.inappropriate_behavior else UncheckedBox(),
                 'Describe:', f'{form_to_save.inappropriate_behavior_notes}'
         ]]
-        t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, 4*inch])
+        t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, 4*inch])
         story.append(t)
     else:
         data = [[# 'Inappropriate Behavior:',
             'Inappropriate Behavior', CheckedBox() if form_to_save.inappropriate_behavior else UncheckedBox(),
             ' ', ' '
         ]]
-        t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, 4 * inch])
+        t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, 4 * inch])
         story.append(t)
 
     if form_to_save.attitude_notes:
@@ -233,7 +318,7 @@ def build_form(form_to_save=None, filename=None):
             'Marginally Cooperative', CheckedBox() if form_to_save.attitude_marginally_cooperative else UncheckedBox(),
             ' ', ' '
         ]]
-    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
                                                                        None, None, None, None])
     story.append(t)
 
@@ -247,7 +332,7 @@ def build_form(form_to_save=None, filename=None):
         'Yelling Out', CheckedBox() if form_to_save.speech_yelling_out else UncheckedBox(),
         'Perseverative', CheckedBox() if form_to_save.speech_perseverative else UncheckedBox()
     ]]
-    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, 0.5*inch, None,
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, 0.5*inch, None,
                                                                        0.6*inch, None, 0.24*inch, None,
                                                                        0.24*inch, None, None, None,
                                                                        None, None, None, None])
@@ -265,7 +350,7 @@ def build_form(form_to_save=None, filename=None):
         'Sufficient', CheckedBox() if form_to_save.verbal_abilities_expressive_language_sufficient else UncheckedBox(),
         'Impaired', CheckedBox() if form_to_save.verbal_abilities_expressive_language_impaired else UncheckedBox(),
     ]]
-    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT,
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
               colWidths=[1.5*inch, 0.01*inch, None, None,
                          None, None, 1.5*inch, 0.01*inch,
                          None, None, None, 0.65*inch]
@@ -280,7 +365,7 @@ def build_form(form_to_save=None, filename=None):
         'Avoidant', CheckedBox() if form_to_save.communication_avoidant else UncheckedBox(),
         'Evasive', CheckedBox() if form_to_save.communication_evasive else UncheckedBox(),
     ]]
-    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
                                                                        None, None, None, None,
                                                                        None, None, None, inch])
     story.append(t)
@@ -294,7 +379,7 @@ def build_form(form_to_save=None, filename=None):
         'Tactile', CheckedBox() if form_to_save.perceptual_disturbances_tactile else UncheckedBox(),
         'Olfactory', CheckedBox() if form_to_save.perceptual_disturbances_olfactory else UncheckedBox(),
     ]]
-    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
                                                                        None, None, None, None,
                                                                        None, None, None, None,
                                                                        None, 0.5*inch])
@@ -307,7 +392,7 @@ def build_form(form_to_save=None, filename=None):
         'Somnolent', CheckedBox() if form_to_save.level_of_consciousness_somnolent else UncheckedBox(),
         'Fluctuating', CheckedBox() if form_to_save.level_of_consciousness_fluctuating else UncheckedBox(),
     ]]
-    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
                                                                        None, None, None, None,
                                                                        None, 2*inch])
     story.append(t)
@@ -321,7 +406,7 @@ def build_form(form_to_save=None, filename=None):
         'Tangential', CheckedBox() if form_to_save.thought_process_tangential else UncheckedBox(),
         'Blocking', CheckedBox() if form_to_save.thought_process_blocking else UncheckedBox(),
     ]]
-    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
                                                                        None, None, None, None,
                                                                        None, None, None, None,
                                                                        None, 0.1 * inch])
@@ -336,7 +421,7 @@ def build_form(form_to_save=None, filename=None):
         'Self-Referential', CheckedBox() if form_to_save.thought_content_self_referential else UncheckedBox(),
         'Poverty of Content', CheckedBox() if form_to_save.thought_content_poverty_of_content else UncheckedBox(),
     ]]
-    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, 0.17 * inch, None, 0.17 * inch,
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, 0.17 * inch, None, 0.17 * inch,
                                                                        None, 0.17 * inch, None, 0.17 * inch,
                                                                        None, 0.17 * inch, None, 0.17 * inch,
                                                                        None, 0.19 * inch])
@@ -352,7 +437,7 @@ def build_form(form_to_save=None, filename=None):
         'Elated', CheckedBox() if form_to_save.mood_elated else UncheckedBox(),
         'Labile', CheckedBox() if form_to_save.mood_labile else UncheckedBox(),
     ]]
-    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
                                                                        None, None, None, None,
                                                                        None, None, None, None,
                                                                        None, None, None, 0.25 * inch])
@@ -365,7 +450,7 @@ def build_form(form_to_save=None, filename=None):
         'Expansive', CheckedBox() if form_to_save.affect_expansive else UncheckedBox(),
         'Agitated', CheckedBox() if form_to_save.affect_agitated else UncheckedBox()
     ]]
-    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
                                                                        None, None, None, None,
                                                                        None, 2.4 * inch])
     story.append(t)
@@ -384,7 +469,7 @@ def build_form(form_to_save=None, filename=None):
             'Negative Statements', CheckedBox() if form_to_save.harmfulness_negative_statements else UncheckedBox(),
             ' ', ' '
         ]]
-    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
                                                                        None, None, None, 2.8 * inch])
     story.append(t)
 
@@ -393,7 +478,7 @@ def build_form(form_to_save=None, filename=None):
         'Fair', CheckedBox() if form_to_save.attention_concentration_fair else UncheckedBox(),
         'Poor', CheckedBox() if form_to_save.attention_concentration_poor else UncheckedBox(),
     ]]
-    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
                                                                        None, 4.5 * inch])
     story.append(t)
 
@@ -403,7 +488,7 @@ def build_form(form_to_save=None, filename=None):
         'Person', CheckedBox() if form_to_save.orientation_person else UncheckedBox(),
         'Disoriented', CheckedBox() if form_to_save.orientation_disoriented else UncheckedBox(),
     ]]
-    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
                                                                        None, None, None, 3.4 * inch])
     story.append(t)
 
@@ -412,7 +497,7 @@ def build_form(form_to_save=None, filename=None):
         'Fair', CheckedBox() if form_to_save.insight_judgement_fair else UncheckedBox(),
         'Poor', CheckedBox() if form_to_save.insight_judgement_poor else UncheckedBox()
     ]]
-    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
                                                                        None, 4.5 * inch])
     story.append(t)
 
@@ -423,7 +508,7 @@ def build_form(form_to_save=None, filename=None):
         'Nightmares', CheckedBox() if form_to_save.agg_behavior_physical else UncheckedBox(),
         'Hypnagogic / Hypnopompic Hallucinations', CheckedBox() if form_to_save.agg_behavior_physical else UncheckedBox(),
     ]]
-    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
                                                                        None, None, None, None,
                                                                        None, 0.4 * inch])
     story.append(t)
@@ -444,7 +529,7 @@ def build_form(form_to_save=None, filename=None):
             'Tobacco Screen', CheckedBox() if form_to_save.tobacco_screen else UncheckedBox(),
             'Tele-Health', CheckedBox() if form_to_save.tele_health else UncheckedBox(),
         ]]
-    t = Table(data, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
+    t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT, colWidths=[None, None, None, None,
                                                                        None, 2.35*inch, None, None,
                                                                        None, None])
     story.append(t)
@@ -500,11 +585,17 @@ def build_form(form_to_save=None, filename=None):
 
     story.append(Spacer(0, 0.35 * inch))
 
-    p = Paragraph(
-        f'Signature:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{form_to_save.signature}',
-        style=ParagraphStyle(name='Normal', leftIndent=0, fontName='Helvetica-Bold',
-                             fontSize=9, alignment=TA_LEFT))
-    story.append(p)
+    # p = Paragraph(
+    #     f'Signature:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{form_to_save.signature}',
+    #     style=ParagraphStyle(name='Normal', leftIndent=0, fontName='Helvetica-Bold',
+    #                          fontSize=9, alignment=TA_LEFT))
+    # story.append(p)
+
+    # Signature file name
+    filename = os.path.abspath(os.path.dirname(__file__)) + '/private_images/' + \
+                                                            'signature' + str(random.randint(1, 18)) + '.png'
+    i = Image(filename=filename, hAlign=TA_LEFT)
+    story.append(i)
 
     p = Paragraph(
         f'Norman Hendricksen, Ph.D. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
