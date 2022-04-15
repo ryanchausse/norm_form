@@ -71,17 +71,18 @@
 
                 <div class="fieldWrapper">
                     {{ form.subjective_options.errors }}
-                    <label for="{{ form.subjective_boilerplate_options.id_for_label }}">Subjective Boilerplate Drop-Downs</label>
+                    <label for="{{ form.subjective_boilerplate_options.id_for_label }}">Subjective Boilerplate Options</label>
                     <br />
                     {{ form.subjective_boilerplate_options }}
                 </div>
-
+                <br />
                 <div class="fieldWrapper">
                     {{ form.subjective_options.errors }}
-                    <label for="{{ form.subjective_options.id_for_label }}">Subjective Drop-Downs</label>
+                    <label for="{{ form.subjective_options.id_for_label }}">Subjective Options</label>
                     <br />
                     {{ form.subjective_options }}
                 </div>
+                <br />
                 <div class="fieldWrapper">
                     {{ form.chief_complaints_problems_history.errors }}
                     <label style="font-size:1.1em"for="{{ form.chief_complaints_problems_history.id_for_label }}">Chief Complaints, Presenting Problems, and History:</label>
@@ -844,26 +845,36 @@
                             </div>
                         </div>
                     </div>
-                    <div class="wrapper" style="float:left;">
-                        <div type="col" style="float:left; padding-right:2em;">
-                            <p style="font-size:1.1em">Misc.</p>
-                            <div class="indent_checkboxes" style="margin-left:1em; margin-bottom:1em;">
-                                <div class="fieldWrapper">
-                                    {{ form.tobacco_screen.errors }}
-                                    <label for="{{ form.tobacco_screen.id_for_label }}">Tobacco screen</label>
-                                    {{ form.tobacco_screen }}
-                                </div>
-                                <div class="fieldWrapper">
-                                    {{ form.tele_health.errors }}
-                                    <label for="{{ form.tele_health.id_for_label }}">Tele-Health</label>
-                                    {{ form.tele_health }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<!--                    <div class="wrapper" style="float:left;">-->
+<!--                        <div type="col" style="float:left; padding-right:2em;">-->
+<!--                            <p style="font-size:1.1em">Misc.</p>-->
+<!--                            <div class="indent_checkboxes" style="margin-left:1em; margin-bottom:1em;">-->
+<!--                                <div class="fieldWrapper">-->
+<!--                                    {{ form.tobacco_screen.errors }}-->
+<!--                                    <label for="{{ form.tobacco_screen.id_for_label }}">Tobacco screen</label>-->
+<!--                                    {{ form.tobacco_screen }}-->
+<!--                                </div>-->
+<!--                                <div class="fieldWrapper">-->
+<!--                                    {{ form.tele_health.errors }}-->
+<!--                                    <label for="{{ form.tele_health.id_for_label }}">Tele-Health</label>-->
+<!--                                    {{ form.tele_health }}-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
                 <div style="clear:both">
                     <h5 class="text-dark">Assessment</h5>
+                    <div class="fieldWrapper">
+                        <div class="indent_checkboxes" style="margin-left:1em; margin-bottom:1em;">
+                            <div class="fieldWrapper">
+                                {{ form.icd_10_codes.errors }}
+                                <label for="{{ form.icd_10_codes.id_for_label }}">ICD-10 Codes:</label>
+                                <br />
+                                {{ form.icd_10_codes }}
+                            </div>
+                        </div>
+                    </div>
                     <div class="fieldWrapper">
                         <div class="indent_checkboxes" style="margin-left:1em; margin-bottom:1em;">
                             <div class="fieldWrapper">
@@ -951,7 +962,7 @@
                     processData: true,
                     data: {"ids": id_list},
                     success: function (data) {
-                        document.getElementById("id_chief_complaints_problems_history").value = data;
+                        document.getElementById("id_chief_complaints_problems_history").value += data;
                     },
                     error: function(){
                       alert("Cannot get data");
@@ -987,7 +998,25 @@
                     processData: true,
                     data: {"ids": id_list},
                     success: function (data) {
-                        document.getElementById("id_discussion_treatment").value = data;
+                        document.getElementById("id_discussion_treatment").value += data;
+                    },
+                    error: function(){
+                      alert("Cannot get data");
+                    }
+                });
+            });
+            $("#id_icd_10_codes").change(function() {
+                console.log($(this).val());
+                var id_list = String($(this).val());
+                $.ajax({
+                    url: "{% url 'icd_10_code_text' %}",
+                    type: "get",
+                    dataType: "json",
+                    contentType: "application/json",
+                    processData: true,
+                    data: {"ids": id_list},
+                    success: function (data) {
+                        document.getElementById("id_diagnostic_impression").value += data;
                     },
                     error: function(){
                       alert("Cannot get data");

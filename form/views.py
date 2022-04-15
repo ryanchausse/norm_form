@@ -31,6 +31,7 @@ from . import flowable_form_builder
 from .models import SubjectiveBoilerplateOption
 from .models import SubjectiveOption
 from .models import DiscussionTreatmentOption
+from .models import Icd10Codes
 
 
 class SubmitNormForm(TemplateView):
@@ -171,6 +172,26 @@ def get_discussion_treatment_option_text(request):
         for discussion_treatment_option in discussion_treatment_options:
             if discussion_treatment_option.full_text:
                 response_text += discussion_treatment_option.full_text + ' '
+        return JsonResponse(response_text, safe=False)
+    return redirect('/')
+
+
+def get_icd_10_code_text(request):
+    """
+    Get value of a given SubjectiveOption via $.AJAX in main_card
+    """
+    if not request.user.groups.filter(name='Admins').exists():
+        return redirect('/')
+    if 'ids' in request.GET and request.GET.get('ids'):
+        ids = request.GET.get('ids').split(',')
+    else:
+        return JsonResponse('', safe=False)
+    if request.is_ajax():
+        icd_10_codes = Icd10Codes.objects.filter(id__in=ids)
+        response_text = ''
+        for icd_10_code in icd_10_codes:
+            if icd_10_code.abbreviated_description:
+                response_text += icd_10_code.full_code + ': ' + icd_10_code.abbreviated_description + ' '
         return JsonResponse(response_text, safe=False)
     return redirect('/')
 

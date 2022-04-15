@@ -28,4 +28,5 @@ urlpatterns = [
     path('api/v1/subjective_boilerplate_option', views.get_subjective_boilerplate_option_text, name='subjective_boilerplate_option'),
     path('api/v1/subjective_option', views.get_subjective_option_text, name='subjective_option'),
     path('api/v1/discussion_treatment_option', views.get_discussion_treatment_option_text, name='discussion_treatment_option'),
+    path('api/v1/icd_10_codes', views.get_icd_10_code_text, name='icd_10_code_text'),
 ]

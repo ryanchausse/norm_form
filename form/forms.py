@@ -7,6 +7,7 @@ from .models import Facility
 from .models import SubjectiveBoilerplateOption
 from .models import SubjectiveOption
 from .models import DiscussionTreatmentOption
+from .models import Icd10Codes
 
 
 class NormFormForm(forms.ModelForm):
@@ -165,8 +166,11 @@ class NormFormForm(forms.ModelForm):
     tele_health = forms.BooleanField(required=False)
 
     # Assessment
-    discussion_treatment_options = forms.ModelMultipleChoiceField(queryset=DiscussionTreatmentOption.objects.all(), required=False)
-    diagnostic_impression = forms.CharField(required=False, max_length=50000, widget=forms.Textarea(attrs={'cols': 30, 'rows': 7}))
+    icd_10_codes = forms.ModelMultipleChoiceField(queryset=Icd10Codes.objects.all(), required=False)
+    discussion_treatment_options = forms.ModelMultipleChoiceField(queryset=DiscussionTreatmentOption.objects.all(),
+                                                                  required=False)
+    diagnostic_impression = forms.CharField(required=False, max_length=50000,
+                                            widget=forms.Textarea(attrs={'cols': 30, 'rows': 7}))
 
     # Plan
     current_medication = forms.CharField(required=False, max_length=50000, widget=forms.Textarea(attrs={'cols': 30, 'rows': 7}))

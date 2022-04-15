@@ -97,6 +97,28 @@ class DiscussionTreatmentOption(models.Model):
         verbose_name_plural = 'Discussion and Treatment Options'
 
 
+class Icd10Codes(models.Model):
+    category_code = models.CharField(max_length=1000, null=True)
+    diagnosis_code = models.CharField(max_length=1000, null=True)
+    full_code = models.CharField(max_length=1000, null=True)
+    abbreviated_description = models.CharField(max_length=1000, null=True)
+    full_description = models.CharField(max_length=10000, null=True)
+    category_title = models.CharField(max_length=1000, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    created_by = models.ForeignKey(get_user_model(),
+                                   null=True,
+                                   blank=True,
+                                   on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return f'{self.abbreviated_description}'
+
+    class Meta:
+        verbose_name = 'ICD-10 Code'
+        verbose_name_plural = 'ICD-10 Codes'
+
+
 class NormForm(models.Model):
     name = models.CharField(max_length=60, blank=True, null=True)
     patient = models.ForeignKey(Patient, default=None, on_delete=models.CASCADE, blank=True, null=True)
