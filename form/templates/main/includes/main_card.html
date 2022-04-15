@@ -862,6 +862,23 @@
 <!--                            </div>-->
 <!--                        </div>-->
 <!--                    </div>-->
+                    <div class="wrapper" style="float:left;">
+                        <div type="col" style="float:left; padding-right:2em;">
+                            <p style="font-size:1.1em">Misc.</p>
+                            <div class="indent_checkboxes" style="margin-left:1em; margin-bottom:1em;">
+                                <div class="fieldWrapper">
+                                    {{ form.mental_capacity.errors }}
+                                    <label for="{{ form.mental_capacity.id_for_label }}">Mental Capacity</label>
+                                    {{ form.mental_capacity }}
+                                </div>
+                                <div class="fieldWrapper">
+                                    {{ form.placement_issues.errors }}
+                                    <label for="{{ form.tele_health.id_for_label }}">Placement Issues</label>
+                                    {{ form.placement_issues }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div style="clear:both">
                     <h5 class="text-dark">Assessment</h5>
@@ -1016,7 +1033,7 @@
                     processData: true,
                     data: {"ids": id_list},
                     success: function (data) {
-                        document.getElementById("id_diagnostic_impression").value += data;
+                        document.getElementById("id_diagnostic_impression").value += (data + ' ');
                     },
                     error: function(){
                       alert("Cannot get data");

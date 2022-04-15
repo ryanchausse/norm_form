@@ -540,6 +540,10 @@ def build_form(form_to_save=None, filename=None):
             'Describe: ', f'{form_to_save.appetite_change_notes}',
             # CheckedBox() if form_to_save.tobacco_screen else UncheckedBox(), 'Tobacco Screen',
             # CheckedBox() if form_to_save.tele_health else UncheckedBox(), 'Tele-Health',
+            Paragraph('Misc:', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                                    fontSize=8, alignment=TA_RIGHT)), ' ',
+            CheckedBox() if form_to_save.mental_capacity else UncheckedBox(), 'Mental Capacity',
+            CheckedBox() if form_to_save.placement_issues else UncheckedBox(), 'Placement Issues',
         ]]
     else:
         data = [[# 'Appetite Change:',
@@ -548,10 +552,15 @@ def build_form(form_to_save=None, filename=None):
             ' ', ' ',
             # CheckedBox() if form_to_save.tobacco_screen else UncheckedBox(), 'Tobacco Screen',
             # CheckedBox() if form_to_save.tele_health else UncheckedBox(), 'Tele-Health',
+            Paragraph('Misc:', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                                    fontSize=8, alignment=TA_RIGHT)), ' ',
+            CheckedBox() if form_to_save.mental_capacity else UncheckedBox(), 'Mental Capacity',
+            CheckedBox() if form_to_save.placement_issues else UncheckedBox(), 'Placement Issues',
         ]]
     t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
               colWidths=[None, None, None, None,
-                         None, 4.94 * inch])
+                         2 * inch, None,
+                         None, None, None, None])
     story.append(t)
 
     story.append(FrameBreak)
