@@ -55,7 +55,7 @@ class SubmitNormForm(TemplateView):
 
             # Save to PDF
             print('Processing NormForm to PDF now... '
-                  f'{form_to_save.name} - {form_to_save.patient} - {form_to_save.facility} - {form_to_save.date}')
+                  f'{form_to_save.patient} - {form_to_save.facility} - {form_to_save.date}')
             filename = os.path.abspath(os.path.dirname(__file__)) + '/patient_files/' + form_to_save.filename
             # pdf = canvas.Canvas(filename=os.path.abspath(os.path.dirname(__file__)) + '/patient_files/' + filename,
             #                     pagesize=letter)

@@ -120,7 +120,6 @@ class Icd10Codes(models.Model):
 
 
 class NormForm(models.Model):
-    name = models.CharField(max_length=60, blank=True, null=True)
     patient = models.ForeignKey(Patient, default=None, on_delete=models.CASCADE, blank=True, null=True)
     facility = models.ForeignKey(Facility, default=None, on_delete=models.CASCADE, blank=True, null=True)
     date = models.DateField(blank=True, default=datetime.date.today)

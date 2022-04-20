@@ -11,7 +11,6 @@ from .models import Icd10Codes
 
 
 class NormFormForm(forms.ModelForm):
-    name = forms.CharField(required=False, max_length=500, widget=forms.TextInput())
     patient = forms.ModelChoiceField(queryset=Patient.objects.all())
     facility = forms.ModelChoiceField(queryset=Facility.objects.all())
     date = forms.DateField(initial=datetime.date.today())
