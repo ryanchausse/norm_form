@@ -168,7 +168,10 @@ class NormFormForm(forms.ModelForm):
     other = forms.BooleanField(required=False)
 
     # Assessment
-    icd_10_codes = forms.ModelMultipleChoiceField(queryset=Icd10Codes.objects.filter(full_code__startswith="F"), required=False)
+    icd_10_codes = forms.ModelMultipleChoiceField(queryset=Icd10Codes.objects
+                                                  .filter(full_code__startswith="F")
+                                                  .order_by('abbreviated_description'),
+                                                  required=False)
     discussion_treatment_options = forms.ModelMultipleChoiceField(queryset=DiscussionTreatmentOption.objects.all(),
                                                                   required=False)
     diagnostic_impression = forms.CharField(required=False, max_length=50000,
