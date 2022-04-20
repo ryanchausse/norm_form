@@ -153,7 +153,6 @@ class NormFormForm(forms.ModelForm):
     sleep_disturbance_narcolepsy = forms.BooleanField(required=False)
     sleep_disturbance_nightmares = forms.BooleanField(required=False)
     sleep_disturbance_hypnagogic_hypnopompic_hallucinations = forms.BooleanField(required=False)
-    sleep_disturbance_describe = forms.BooleanField(required=False)
     sleep_disturbance_notes = forms.CharField(required=False, max_length=50000, widget=forms.Textarea(attrs={'cols': 30, 'rows': 3}))
 
     appetite_change_no = forms.BooleanField(required=False)

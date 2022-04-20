@@ -261,7 +261,6 @@ class NormForm(models.Model):
     sleep_disturbance_narcolepsy = models.BooleanField(default=False)
     sleep_disturbance_nightmares = models.BooleanField(default=False)
     sleep_disturbance_hypnagogic_hypnopompic_hallucinations = models.BooleanField(default=False)
-    sleep_disturbance_describe = models.BooleanField(default=False)
     sleep_disturbance_notes = models.CharField(max_length=50000, blank=True, null=True, default='')
 
     appetite_change_no = models.BooleanField(default=False)
