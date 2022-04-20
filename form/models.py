@@ -274,6 +274,7 @@ class NormForm(models.Model):
     tele_health = models.BooleanField(default=False)
     mental_capacity = models.BooleanField(default=False)
     placement_issues = models.BooleanField(default=False)
+    other = models.BooleanField(default=False)
 
     # Assessment
     diagnostic_impression = models.CharField(max_length=50000, blank=True, null=True, default='')

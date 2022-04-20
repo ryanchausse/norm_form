@@ -166,6 +166,7 @@ class NormFormForm(forms.ModelForm):
     tele_health = forms.BooleanField(required=False)
     mental_capacity = forms.BooleanField(required=False)
     placement_issues = forms.BooleanField(required=False)
+    other = forms.BooleanField(required=False)
 
     # Assessment
     icd_10_codes = forms.ModelMultipleChoiceField(queryset=Icd10Codes.objects.filter(full_code__startswith="F"), required=False)

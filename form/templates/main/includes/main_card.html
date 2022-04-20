@@ -873,8 +873,13 @@
                                 </div>
                                 <div class="fieldWrapper">
                                     {{ form.placement_issues.errors }}
-                                    <label for="{{ form.tele_health.id_for_label }}">Placement Issues</label>
+                                    <label for="{{ form.placement_issues.id_for_label }}">Placement Issues</label>
                                     {{ form.placement_issues }}
+                                </div>
+                                <div class="fieldWrapper">
+                                    {{ form.other.errors }}
+                                    <label for="{{ form.other.id_for_label }}">Other</label>
+                                    {{ form.other }}
                                 </div>
                             </div>
                         </div>

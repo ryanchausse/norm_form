@@ -544,6 +544,7 @@ def build_form(form_to_save=None, filename=None):
                                                     fontSize=8, alignment=TA_RIGHT)), ' ',
             CheckedBox() if form_to_save.mental_capacity else UncheckedBox(), 'Mental Capacity',
             CheckedBox() if form_to_save.placement_issues else UncheckedBox(), 'Placement Issues',
+            CheckedBox() if form_to_save.other else UncheckedBox(), 'Other',
         ]]
     else:
         data = [[# 'Appetite Change:',
@@ -556,10 +557,11 @@ def build_form(form_to_save=None, filename=None):
                                                     fontSize=8, alignment=TA_RIGHT)), ' ',
             CheckedBox() if form_to_save.mental_capacity else UncheckedBox(), 'Mental Capacity',
             CheckedBox() if form_to_save.placement_issues else UncheckedBox(), 'Placement Issues',
+            CheckedBox() if form_to_save.other else UncheckedBox(), 'Other',
         ]]
     t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
               colWidths=[None, None, None, None,
-                         2 * inch, None,
+                         1.37 * inch, None,
                          None, None, None, None])
     story.append(t)
 
