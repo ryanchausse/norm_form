@@ -96,20 +96,6 @@ class ViewNormFormsPage(TemplateView):
         if self.request.user.groups.filter(name='Admins').exists():
             context['user_is_in_admins'] = True
             context['norm_forms'] = NormForm.objects.all().order_by('-created_at')
-            import csv
-            from .models import Icd10Codes
-            # Put this script in views.py's ViewNormFormsPage
-            filename = os.path.abspath(os.path.dirname(__file__)) + '/icd_10_2020_diagnosis_codes.csv'
-            with open(filename) as f:
-                reader = csv.reader(f)
-                for row in reader:
-                    print(row)
-                    _, created = Icd10Codes.objects.get_or_create(
-                        diagnosis_code=row[2],
-                        full_code=row[1],
-                        abbreviated_description=row[3],
-                        full_description=row[4]
-                    )
         else:
             context['user_is_in_admins'] = False
             context['norm_forms'] = None
@@ -227,14 +213,14 @@ def get_filtered_icd_10_code_text(request):
             icd_10_codes = Icd10Codes.objects\
                                      .filter(full_code__startswith="F")\
                                      .filter(full_description__icontains=filter_text)\
-                                     .values('id', 'category_code', 'diagnosis_code',
+                                     .values('id', 'diagnosis_code',
                                              'full_code', 'abbreviated_description',
                                              'full_description')\
                                      .order_by('abbreviated_description')
         else:
             icd_10_codes = Icd10Codes.objects\
                                      .filter(full_code__startswith="F")\
-                                     .values('id', 'category_code', 'diagnosis_code',
+                                     .values('id', 'diagnosis_code',
                                              'full_code', 'abbreviated_description',
                                              'full_description')\
                                      .order_by('abbreviated_description')
