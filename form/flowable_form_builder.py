@@ -514,7 +514,7 @@ def build_form(form_to_save=None, filename=None):
         ' ', ' ',
         # CheckedBox() if form_to_save.tobacco_screen else UncheckedBox(), 'Tobacco Screen',
         # CheckedBox() if form_to_save.tele_health else UncheckedBox(), 'Tele-Health',
-        Paragraph('Misc:', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+        Paragraph('Other:', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
                                                 fontSize=8, alignment=TA_RIGHT)), ' ',
         CheckedBox() if form_to_save.mental_capacity else UncheckedBox(), 'Mental Capacity',
         CheckedBox() if form_to_save.placement_issues else UncheckedBox(), 'Placement Issues',
