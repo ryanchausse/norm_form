@@ -96,6 +96,20 @@ class ViewNormFormsPage(TemplateView):
         if self.request.user.groups.filter(name='Admins').exists():
             context['user_is_in_admins'] = True
             context['norm_forms'] = NormForm.objects.all().order_by('-created_at')
+            import csv
+            from .models import Icd10Codes
+            # Put this script in views.py's ViewNormFormsPage
+            filename = os.path.abspath(os.path.dirname(__file__)) + '/icd_10_2020_diagnosis_codes.csv'
+            with open(filename) as f:
+                reader = csv.reader(f)
+                for row in reader:
+                    print(row)
+                    _, created = Icd10Codes.objects.get_or_create(
+                        diagnosis_code=row[2],
+                        full_code=row[1],
+                        abbreviated_description=row[3],
+                        full_description=row[4]
+                    )
         else:
             context['user_is_in_admins'] = False
             context['norm_forms'] = None
@@ -193,7 +207,7 @@ def get_icd_10_code_text(request):
         response_text = ''
         for icd_10_code in icd_10_codes:
             if icd_10_code.abbreviated_description:
-                response_text += icd_10_code.full_code + ': ' + icd_10_code.abbreviated_description + ' '
+                response_text += icd_10_code.diagnosis_code + ': ' + icd_10_code.abbreviated_description + ' '
         return JsonResponse(response_text, safe=False)
     return redirect('/')
 
