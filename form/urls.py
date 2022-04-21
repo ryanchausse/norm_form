@@ -29,4 +29,5 @@ urlpatterns = [
     path('api/v1/subjective_option', views.get_subjective_option_text, name='subjective_option'),
     path('api/v1/discussion_treatment_option', views.get_discussion_treatment_option_text, name='discussion_treatment_option'),
     path('api/v1/icd_10_codes', views.get_icd_10_code_text, name='icd_10_code_text'),
+    path('api/v1/filtered_icd_10_codes', views.get_filtered_icd_10_code_text, name='filtered_icd_10_code_text'),
 ]

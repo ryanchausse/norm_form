@@ -879,6 +879,8 @@
                                 {{ form.icd_10_codes.errors }}
                                 <label for="{{ form.icd_10_codes.id_for_label }}">ICD-10 Codes:</label>
                                 <br />
+                                <input id="filterICD10" type="text" placeholder="Search...">
+                                <br />
                                 {{ form.icd_10_codes }}
                             </div>
                         </div>
@@ -1014,7 +1016,6 @@
                 });
             });
             $("#id_icd_10_codes").change(function() {
-                console.log($(this).val());
                 var id_list = String($(this).val());
                 $.ajax({
                     url: "{% url 'icd_10_code_text' %}",
@@ -1030,6 +1031,29 @@
                       alert("Cannot get data");
                     }
                 });
+            });
+            $("#filterICD10").keyup(function() {
+                console.log($(this).val());
+                //if ($("#filterICD10").val().length > 1) {
+                    $.ajax({
+                        url: "{% url 'filtered_icd_10_code_text' %}",
+                        type: "get",
+                        dataType: "json",
+                        contentType: "application/json",
+                        processData: true,
+                        data: {'data': $(this).val()},
+                        success: function (data) {
+                            var select_string = '';
+                            $.each(data, function(k, v) {
+                                select_string += "<option value='" + v.id + "'>" + v.abbreviated_description + "</option> "
+                            });
+                            $("#id_icd_10_codes").empty().append(select_string);
+                        },
+                        error: function(){
+                          alert("Cannot get data");
+                        }
+                    });
+                //};
             });
         </script>
     {% endif %}

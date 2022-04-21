@@ -178,7 +178,7 @@ def get_discussion_treatment_option_text(request):
 
 def get_icd_10_code_text(request):
     """
-    Get value of a given SubjectiveOption via $.AJAX in main_card
+    Get value of a given ICD-10 Code via $.AJAX in main_card
     """
     if not request.user.groups.filter(name='Admins').exists():
         return redirect('/')
@@ -187,12 +187,45 @@ def get_icd_10_code_text(request):
     else:
         return JsonResponse('', safe=False)
     if request.is_ajax():
-        icd_10_codes = Icd10Codes.objects.filter(id__in=ids)
+        icd_10_codes = Icd10Codes.objects\
+                                 .filter(full_code__startswith="F")\
+                                 .filter(id__in=ids)
         response_text = ''
         for icd_10_code in icd_10_codes:
             if icd_10_code.abbreviated_description:
                 response_text += icd_10_code.full_code + ': ' + icd_10_code.abbreviated_description + ' '
         return JsonResponse(response_text, safe=False)
+    return redirect('/')
+
+
+def get_filtered_icd_10_code_text(request):
+    """
+    Given text, filter ICO-10 code choices (return array) via $.AJAX in main_card
+    """
+    if not request.user.groups.filter(name='Admins').exists():
+        return redirect('/')
+    if 'data' in request.GET:
+        filter_text = request.GET.get('data')
+    else:
+        return JsonResponse('', safe=False)
+    if request.is_ajax():
+        if request.GET.get('data') is not None:
+            icd_10_codes = Icd10Codes.objects\
+                                     .filter(full_code__startswith="F")\
+                                     .filter(full_description__icontains=filter_text)\
+                                     .values('id', 'category_code', 'diagnosis_code',
+                                             'full_code', 'abbreviated_description',
+                                             'full_description')\
+                                     .order_by('abbreviated_description')
+        else:
+            icd_10_codes = Icd10Codes.objects\
+                                     .filter(full_code__startswith="F")\
+                                     .values('id', 'category_code', 'diagnosis_code',
+                                             'full_code', 'abbreviated_description',
+                                             'full_description')\
+                                     .order_by('abbreviated_description')
+        print(icd_10_codes)
+        return JsonResponse(list(icd_10_codes), safe=False)
     return redirect('/')
 
 
