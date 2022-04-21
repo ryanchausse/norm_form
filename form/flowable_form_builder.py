@@ -175,11 +175,11 @@ def build_form(form_to_save=None, filename=None):
                                                              fontSize=8, alignment=TA_RIGHT))
     story.append(p)
     story.append(Spacer(0, 0.06 * inch))
-    p = Paragraph('Mood', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+    p = Paragraph('Mood & Affect', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
                                                              fontSize=8, alignment=TA_RIGHT))
     story.append(p)
     story.append(Spacer(0, 0.05 * inch))
-    p = Paragraph('Affect', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+    p = Paragraph('(cont.)', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
                                                              fontSize=8, alignment=TA_RIGHT))
     story.append(p)
     story.append(Spacer(0, 0.06 * inch))
@@ -540,8 +540,8 @@ def build_form(form_to_save=None, filename=None):
             'Describe: ', f'{form_to_save.appetite_change_notes}',
             # CheckedBox() if form_to_save.tobacco_screen else UncheckedBox(), 'Tobacco Screen',
             # CheckedBox() if form_to_save.tele_health else UncheckedBox(), 'Tele-Health',
-            Paragraph('Misc:', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
-                                                    fontSize=8, alignment=TA_RIGHT)), ' ',
+            Paragraph('Other:', style=ParagraphStyle(name='Normal', fontName='Helvetica-Bold',
+                                                     fontSize=8, alignment=TA_RIGHT)), ' ',
             CheckedBox() if form_to_save.mental_capacity else UncheckedBox(), 'Mental Capacity',
             CheckedBox() if form_to_save.placement_issues else UncheckedBox(), 'Placement Issues',
             CheckedBox() if form_to_save.other else UncheckedBox(), 'Other',
