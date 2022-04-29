@@ -50,7 +50,7 @@ class NormFormDocTemplate(BaseDocTemplate):
         BaseDocTemplate.build(self, flowables)
 
 
-def build_form(form_to_save=None, filename=None):
+def build_form(form_to_save=None, filename=None, signature_file_path=None):
     if not form_to_save or not filename:
         raise ValueError('Form or filename has not been supplied')
     doc = NormFormDocTemplate(filename, rightMargin=15, leftMargin=15,
@@ -602,10 +602,14 @@ def build_form(form_to_save=None, filename=None):
     # story.append(p)
 
     # Signature file name
-    filename = os.path.abspath(os.path.dirname(__file__)) + '/private_images/' +\
-                                                            'signature' +\
-                                                            str(random.randint(1, 18)) +\
-                                                            '.png'
+    if signature_file_path:
+        filename = signature_file_path
+    else:
+        filename = os.path.abspath(os.path.dirname(__file__)) + '/private_images/' +\
+                                                                'signature' +\
+                                                                str(random.randint(1, 18)) +\
+                                                                '.png'
+    print(filename)
     i = Image(filename=filename, hAlign=TA_LEFT, height=30, width=150)
     story.append(i)
 

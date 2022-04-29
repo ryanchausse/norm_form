@@ -32,6 +32,7 @@ from .models import SubjectiveBoilerplateOption
 from .models import SubjectiveOption
 from .models import DiscussionTreatmentOption
 from .models import Icd10Codes
+from jsignature.utils import draw_signature
 
 
 class SubmitNormForm(TemplateView):
@@ -59,7 +60,16 @@ class SubmitNormForm(TemplateView):
             filename = os.path.abspath(os.path.dirname(__file__)) + '/patient_files/' + form_to_save.filename
             # pdf = canvas.Canvas(filename=os.path.abspath(os.path.dirname(__file__)) + '/patient_files/' + filename,
             #                     pagesize=letter)
-            flowable_form_builder.build_form(form_to_save=form_to_save, filename=filename)
+            signature = form.cleaned_data.get('signature')
+            if signature:
+                # as an image
+                # signature_picture = draw_signature(signature)
+                # or as a file
+                signature_file_path = draw_signature(signature, as_file=True)
+            else:
+                raise FileExistsError("No signature file found")
+            flowable_form_builder.build_form(form_to_save=form_to_save, filename=filename,
+                                             signature_file_path=signature_file_path)
         return redirect('/')
 
 
