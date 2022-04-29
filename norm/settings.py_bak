@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'form',
+    'jsignature'
 ]
 
 MIDDLEWARE = [
@@ -152,7 +153,9 @@ STATIC_URL = '/static/'
 
 # Toggle staticfiles_dirs while on local development, static_root while on prod
 STATICFILES_DIRS = [
-   BASE_DIR / "form/templates/static"
+   BASE_DIR / "form/templates/static",
+   # BASE_DIR / "venv_norm/lib/python3.8/site-packages/jsignature/templates/jsignature",
+   # BASE_DIR / "venv_norm/lib/python3.8/site-packages/jsignature/static/js"
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -214,3 +217,7 @@ EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_SSL = True
 
 EMAIL_TO = 'chausse@gmail.com'
+
+JSIGNATURE_WIDTH = 500
+JSIGNATURE_HEIGHT = 200
+JSIGNATURE_JQUERY = 'admin'
