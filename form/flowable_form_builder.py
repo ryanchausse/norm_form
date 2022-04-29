@@ -522,7 +522,7 @@ def build_form(form_to_save=None, filename=None):
     ]]
     t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
               colWidths=[None, None, None, None,
-                         1.37 * inch, None,
+                         1.35 * inch, None,
                          None, None, None, None])
     story.append(t)
 
@@ -606,7 +606,7 @@ def build_form(form_to_save=None, filename=None):
                                                             'signature' +\
                                                             str(random.randint(1, 18)) +\
                                                             '.png'
-    i = Image(filename=filename, hAlign=TA_LEFT, height=50)
+    i = Image(filename=filename, hAlign=TA_LEFT, height=30, width=150)
     story.append(i)
 
     p = Paragraph(

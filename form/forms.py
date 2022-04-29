@@ -8,6 +8,8 @@ from .models import SubjectiveBoilerplateOption
 from .models import SubjectiveOption
 from .models import DiscussionTreatmentOption
 from .models import Icd10Codes
+from jsignature.forms import JSignatureField
+from jsignature.widgets import JSignatureWidget
 
 
 class NormFormForm(forms.ModelForm):
@@ -180,7 +182,7 @@ class NormFormForm(forms.ModelForm):
     current_medication = forms.CharField(required=False, max_length=50000, widget=forms.Textarea(attrs={'cols': 30, 'rows': 7}))
     discussion_treatment = forms.CharField(required=False, max_length=50000, widget=forms.Textarea(attrs={'cols': 30, 'rows': 7}))
 
-    signature = forms.CharField(max_length=500)
+    signature = JSignatureField(widget=JSignatureWidget(jsignature_attrs={'color': '#CCC'}))
 
     class Meta:
         model = NormForm
