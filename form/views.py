@@ -66,6 +66,8 @@ class SubmitNormForm(TemplateView):
                 # signature_picture = draw_signature(signature)
                 # or as a file
                 signature_file_path = draw_signature(signature, as_file=True)
+                # Might be a corner case here when nothing is entered into field on second
+                # entry after a long time when tmp files have been purged
             else:
                 raise FileExistsError("No signature file found")
             flowable_form_builder.build_form(form_to_save=form_to_save, filename=filename,

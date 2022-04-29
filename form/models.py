@@ -27,6 +27,7 @@ class Facility(models.Model):
 class Patient(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255, null=True)
+    dob = models.DateField(max_length=8, blank=True, null=True)
     mrn = models.CharField(max_length=255, blank=True, null=True, default='')
     facility = models.ForeignKey(Facility, default=None, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
