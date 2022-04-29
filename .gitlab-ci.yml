@@ -30,7 +30,6 @@ setup_docker_container_and_deploy:
     - export DEBIAN_FRONTEND=noninteractive
     - apt -y update
     - apt -y upgrade
-    - apt -y install python3.8
     - apt -y install python3-pip
     - apt -y install apt-utils
     - apt -y install net-tools postgresql openssh-server openssh-client git
