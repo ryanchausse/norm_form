@@ -72,6 +72,19 @@ class SubmitNormForm(TemplateView):
                 raise FileExistsError("No signature file found")
             flowable_form_builder.build_form(form_to_save=form_to_save, filename=filename,
                                              signature_file_path=signature_file_path)
+            # Email Bal
+            send_mail(
+                'New Form for Norm Hendricksen',
+                f'Hello Bal!\n\n'
+                f'There is a new form to process on the Norm Form website\n\n'
+                f'Please click this link to find it:\n\n'
+                f'https://form.hendricksenphd.com/view_norm_forms\n\n'
+                f'Thanks!',
+                settings.EMAIL_HOST_USER,
+                [settings.EMAIL_TO],
+                fail_silently=False,
+            )
+
         return redirect('/')
 
 
@@ -236,7 +249,7 @@ def get_filtered_icd_10_code_text(request):
                                              'full_code', 'abbreviated_description',
                                              'full_description')\
                                      .order_by('abbreviated_description')
-        print(icd_10_codes)
+        # print(icd_10_codes)
         return JsonResponse(list(icd_10_codes), safe=False)
     return redirect('/')
 
