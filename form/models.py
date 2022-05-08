@@ -29,6 +29,7 @@ class Patient(models.Model):
     last_name = models.CharField(max_length=255, null=True)
     dob = models.DateField(max_length=8, blank=True, null=True)
     mrn = models.CharField(max_length=255, blank=True, null=True, default='')
+    ssn = models.CharField(max_length=255, blank=True, null=True, default='')
     facility = models.ForeignKey(Facility, default=None, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
