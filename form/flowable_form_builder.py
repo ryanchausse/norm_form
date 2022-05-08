@@ -59,7 +59,7 @@ def build_form(form_to_save=None, filename=None, signature_file_path=None):
     #                         topMargin=10, bottomMargin=10)
     story = []
     title_text = "Psychologist Consultation / Follow-Up"
-    p = Paragraph(title_text, style=ParagraphStyle(name='Normal', fontName='Helvetica', fontSize=12,
+    p = Paragraph(title_text, style=ParagraphStyle(name='Normal', fontName='Helvetica', fontSize=16,
                                                    alignment=TA_CENTER))
     story.append(p)
 
@@ -522,7 +522,7 @@ def build_form(form_to_save=None, filename=None, signature_file_path=None):
     ]]
     t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
               colWidths=[None, None, None, None,
-                         1.35 * inch, None,
+                         1.32 * inch, None,
                          None, None, None, None])
     story.append(t)
 
