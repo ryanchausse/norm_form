@@ -39,7 +39,11 @@ class Patient(models.Model):
                                    on_delete=models.SET_NULL)
 
     def __str__(self):
-        if self.dob:
+        if self.ssn and self.dob:
+            return f'{self.last_name}, {self.first_name} - {self.ssn} - {self.dob}'
+        elif self.ssn:
+            return f'{self.last_name}, {self.first_name} - {self.ssn}'
+        elif self.dob:
             return f'{self.last_name}, {self.first_name} - {self.dob}'
         else:
             return f'{self.last_name}, {self.first_name}'
