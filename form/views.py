@@ -254,6 +254,27 @@ def get_filtered_icd_10_code_text(request):
     return redirect('/')
 
 
+def find_previous_patient_forms(request):
+    """
+    Get list of ids and dates of forms submitted given a patient id
+    """
+    if not request.user.groups.filter(name='Admins').exists():
+        return redirect('/')
+    if 'patient_id' in request.GET and request.GET.get('patient_id'):
+        patient = Patient.objects.get(pk=request.GET.get('patient_id'))
+    else:
+        return JsonResponse('', safe=False)
+    if request.is_ajax():
+        previous_norm_forms = NormForm.objects.filter(patient=patient)\
+                                      .order_by('-date')[:5]
+        response_text = ''
+        for norm_form in previous_norm_forms:
+            if norm_form.id and norm_form.date:
+                response_text += "<a href='./" + str(norm_form.id) + "'>" + str(norm_form.date) + "</a><br />"
+        return JsonResponse(response_text, safe=False)
+    return redirect('/')
+
+
 def handler404(request, exception, template_name="404.html"):
     """
     Custom 404 page

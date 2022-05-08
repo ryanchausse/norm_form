@@ -36,6 +36,12 @@
                         </tr>
                         <tr>
                             <td></td>
+                            <td id="previous_patient_forms">
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
                             <td style="font-size: 0.9em;">
                                 Add a new <a href="./admin/form/patient/add/">patient</a>
                             </td>
@@ -1066,6 +1072,23 @@
                         }
                     });
                 //};
+            });
+            $("#id_patient").change(function() {
+                var patient_id = String($(this).val());
+                $.ajax({
+                    url: "{% url 'previous_patient_forms' %}",
+                    type: "get",
+                    dataType: "json",
+                    contentType: "application/json",
+                    processData: true,
+                    data: {"patient_id": patient_id},
+                    success: function (data) {
+                        document.getElementById("previous_patient_forms").innerHTML = data;
+                    },
+                    error: function(){
+                        alert("Cannot get data");
+                    }
+                });
             });
         </script>
     {% endif %}
