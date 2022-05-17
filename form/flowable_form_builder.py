@@ -518,11 +518,11 @@ def build_form(form_to_save=None, filename=None, signature_file_path=None):
                                                 fontSize=8, alignment=TA_RIGHT)), ' ',
         CheckedBox() if form_to_save.mental_capacity else UncheckedBox(), 'Mental Capacity',
         CheckedBox() if form_to_save.placement_issues else UncheckedBox(), 'Placement Issues',
-        CheckedBox() if form_to_save.other else UncheckedBox(), 'Other',
+        CheckedBox() if form_to_save.tele_health else UncheckedBox(), 'Tele-Health',
     ]]
     t = Table(data, rowHeights=16, style=TableStyle(grid), hAlign=TA_LEFT,
               colWidths=[None, None, None, None,
-                         1.32 * inch, None,
+                         1.03 * inch, None,
                          None, None, None, None])
     story.append(t)
 
