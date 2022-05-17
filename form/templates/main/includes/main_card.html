@@ -28,7 +28,9 @@
                         <tr>
                             <td>
                                 {{ form.patient.errors }}
-                                <label for="{{ form.patient.id_for_label }}">Patient:</label>
+                                <label for="{{ form.patient.id_for_label }}">Patient: <a href="./admin/form/patient/add"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg></a>
+                                </label>
                             </td>
                             <td>
                                 {{ form.patient }}
@@ -41,24 +43,14 @@
                             </td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td style="font-size: 0.9em;">
-                                Add a new <a href="./admin/form/patient/add/">patient</a>
-                            </td>
-                        </tr>
-                        <tr>
                             <td>
                                 {{ form.facility.errors }}
-                                <label for="{{ form.facility.id_for_label }}">Facility:</label>
+                                <label for="{{ form.facility.id_for_label }}">Facility: <a href="./admin/form/facility/add"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg></a>
+                                </label>
                             </td>
                             <td>
                                 {{ form.facility }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td style="font-size: 0.9em;">
-                                Add a new <a href="./admin/form/facility/add/">facility</a>
                             </td>
                         </tr>
                         <tr>
@@ -80,14 +72,18 @@
 
                 <div class="fieldWrapper">
                     {{ form.subjective_options.errors }}
-                    <label for="{{ form.subjective_boilerplate_options.id_for_label }}">Subjective Boilerplate Options</label>
+                    <label for="{{ form.subjective_boilerplate_options.id_for_label }}">Subjective Boilerplate Options <a href="./admin/form/subjectiveboilerplateoption/add/"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg></a>
+                    </label>
                     <br />
                     {{ form.subjective_boilerplate_options }}
                 </div>
                 <br />
                 <div class="fieldWrapper">
                     {{ form.subjective_options.errors }}
-                    <label for="{{ form.subjective_options.id_for_label }}">Subjective Options</label>
+                    <label for="{{ form.subjective_options.id_for_label }}">Subjective Options <a href="./admin/form/subjectiveoption/add/"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg></a>
+                    </label>
                     <br />
                     {{ form.subjective_options }}
                 </div>
@@ -928,7 +924,9 @@
                         <div class="indent_checkboxes" style="margin-left:1em; margin-bottom:1em;">
                             <div class="fieldWrapper">
                                 {{ form.discussion_treatment_options.errors }}
-                                <label for="{{ form.discussion_treatment_options.id_for_label }}">Discussion and Treatment Options:</label>
+                                <label for="{{ form.discussion_treatment_options.id_for_label }}">Discussion and Treatment Options: <a href="./admin/form/discussiontreatmentoption/add"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg></a>
+                                </label>
                                 <br />
                                 {{ form.discussion_treatment_options }}
                             </div>
