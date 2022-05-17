@@ -974,7 +974,12 @@
                     </div>
 
                     <div class="d-flex flex-row-reverse">
-                        <button type="submit" class="btn btn-primary" id="button-submit">Submit ➞</button>
+                        <button type="submit" class="btn btn-primary" style="margin-left:1em;" id="button-submit">Submit ➞</button>
+                        <div class="fieldWrapper">
+                            {{ form.preview.errors }}
+                            <label for="{{ form.preview.id_for_label }}">Preview</label>
+                            {{ form.preview }}
+                        </div>
                     </div>
                 </div>
             </form>
@@ -1089,7 +1094,6 @@
                         alert("Cannot get data");
                     }
                 });
-            });
         </script>
     {% endif %}
 </div>

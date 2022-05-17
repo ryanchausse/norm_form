@@ -183,6 +183,7 @@ class NormFormForm(forms.ModelForm):
     discussion_treatment = forms.CharField(required=False, max_length=50000, widget=forms.Textarea(attrs={'cols': 30, 'rows': 7}))
 
     signature = JSignatureField(widget=JSignatureWidget(jsignature_attrs={'color': '#0c00a0'}))
+    preview = forms.BooleanField(required=False)
 
     class Meta:
         model = NormForm
