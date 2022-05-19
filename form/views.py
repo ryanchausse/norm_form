@@ -321,6 +321,8 @@ def email_bal(request, pk=None):
                 fail_silently=False,
             )
         messages.add_message(request, messages.SUCCESS, "Successfully emailed Bal.")
+        norm_form.emailed = True
+        norm_form.save()
     return redirect('/view_norm_forms')
 
 
