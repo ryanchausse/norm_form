@@ -15,7 +15,8 @@ from jsignature.widgets import JSignatureWidget
 class NormFormForm(forms.ModelForm):
     patient = forms.ModelChoiceField(queryset=Patient.objects.all())
     facility = forms.ModelChoiceField(queryset=Facility.objects.all())
-    date = forms.DateField(initial=datetime.date.today())
+    date = forms.DateField(initial=datetime.date.today(),
+                           widget=forms.TextInput(attrs={'placeholder': 'YYYY-MM-DD'}))
 
     # Subjective
     subjective_boilerplate_options = forms.ModelMultipleChoiceField(queryset=SubjectiveBoilerplateOption.objects.all(), required=False)
