@@ -21,6 +21,7 @@
                             <th>Date</th>
                             <th>PDF</th>
                             <th>New Form Link</th>
+                            <th>Email Bal</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -30,6 +31,7 @@
                             <th>Date</th>
                             <th>PDF</th>
                             <th>New Form Link</th>
+                            <th>Email Bal</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -41,6 +43,7 @@
                                     <td>{{ norm_form.date }}</td>
                                     <td><a href="/get_pdf/{{ norm_form.id }}" target="_blank">{{ norm_form.filename }}</a></td>
                                     <td><a href="/{{ norm_form.id }}">View / Submit Another</a></td>
+                                    <td><a href="/email_bal/{{ norm_form.id }}">Email Bal</a></td>
                                 </tr>
                             {% endfor %}
                         {% endif %}

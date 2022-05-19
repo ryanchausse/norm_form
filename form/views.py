@@ -97,20 +97,8 @@ class SubmitNormForm(TemplateView):
                     raise FileExistsError("No signature file found")
                 flowable_form_builder.build_form(form_to_save=form_to_save, filename=filename,
                                                  signature_file_path=signature_file_path)
-                # Email Bal
-                send_mail(
-                    'New Form for Norm Hendricksen',
-                    f'Hello Bal!\n\n'
-                    f'There is a new form to process on the Norm Form website\n\n'
-                    f'Please click this link to find it:\n\n'
-                    f'https://form.hendricksenphd.com/view_norm_forms\n\n'
-                    f'Thanks!',
-                    settings.EMAIL_HOST_USER,
-                    [settings.EMAIL_TO],
-                    fail_silently=False,
-                )
 
-        return redirect('/')
+        return redirect('/view_norm_forms')
 
 
 class NormFormPage(TemplateView):
@@ -311,6 +299,27 @@ def find_previous_patient_forms(request):
             if norm_form.id and norm_form.date:
                 response_text += "<a href='./" + str(norm_form.id) + "'>" + str(norm_form.date) + "</a><br />"
         return JsonResponse(response_text, safe=False)
+    return redirect('/')
+
+
+def email_bal(request, pk=None):
+    """
+    Send Email to Bal with current NormForm
+    """
+    if request.user.groups.filter(name='Admins').exists() and pk:
+        norm_form = NormForm.objects.get(id=pk)
+        if norm_form.filename:
+            # Email Bal
+            send_mail(
+                'New Form for Norm Hendricksen',
+                f'Hello Bal!\n\n'
+                f'There is a new form to process on the Norm Form website\n\n'
+                f'https://form.hendricksenphd.com/get_pdf/{pk}\n\n'
+                f'Thanks!',
+                settings.EMAIL_HOST_USER,
+                [settings.EMAIL_TO],
+                fail_silently=False,
+            )
     return redirect('/')
 
 
