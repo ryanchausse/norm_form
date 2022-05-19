@@ -320,7 +320,8 @@ def email_bal(request, pk=None):
                 [settings.EMAIL_TO],
                 fail_silently=False,
             )
-    return redirect('/')
+        messages.add_message(request, messages.SUCCESS, "Successfully emailed Bal.")
+    return redirect('/view_norm_forms')
 
 
 def handler404(request, exception, template_name="404.html"):
