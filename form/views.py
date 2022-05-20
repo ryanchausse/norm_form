@@ -131,6 +131,10 @@ class ViewNormFormsPage(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        if self.request.user.groups.filter(name='NonBal').exists():
+            context['user_is_in_non_bal_group'] = True
+        else:
+            context['user_is_in_non_bal_group'] = False
         if self.request.user.groups.filter(name='Admins').exists():
             context['user_is_in_admins'] = True
             context['norm_forms'] = NormForm.objects.all().order_by('-created_at')
@@ -151,6 +155,9 @@ def get_pdf_page(request, pk=None):
             return FileResponse(open(os.path.abspath(os.path.dirname(__file__)) +
                                      '/patient_files/' +
                                      norm_form.filename, 'rb'), content_type='application/pdf')
+        if request.user.email == settings.EMAIL_TO:
+            norm_form.bal_accessed = datetime.datetime.now()
+
     return redirect('/')
 
 

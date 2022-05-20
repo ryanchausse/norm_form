@@ -23,6 +23,9 @@
                             <th>New Form Link</th>
                             <th>Email Bal</th>
                             <th>Email Sent?</th>
+                            {% if user.is_authenticated and user_is_in_non_bal_group %}
+                                <th>Bal Accessed Time</th>
+                            {% endif %}
                         </tr>
                     </thead>
                     <tfoot>
@@ -34,6 +37,9 @@
                             <th>New Form Link</th>
                             <th>Email Bal</th>
                             <th>Email Sent?</th>
+                            {% if user.is_authenticated and user_is_in_non_bal_group %}
+                                <th>Bal Accessed Time</th>
+                            {% endif %}
                         </tr>
                     </tfoot>
                     <tbody>
@@ -46,11 +52,20 @@
                                     <td><a href="/get_pdf/{{ norm_form.id }}" target="_blank">{{ norm_form.filename }}</a></td>
                                     <td><a href="/{{ norm_form.id }}">View / Submit Another</a></td>
                                     <td><a href="/email_bal/{{ norm_form.id }}">Email Bal</a></td>
-                                    <td>{% if norm_form.emailed %}
+                                    <td>
+                                        {% if norm_form.emailed %}
                                             <span style="color:green">Email sent</span>
                                         {% else %}
                                             <span style="color:red">No email sent</span>
-                                        {% endif %}</td>
+                                        {% endif %}
+                                    </td>
+                                    {% if user.is_authenticated and user_is_in_non_bal_group %}
+                                        <td>
+                                            {% if norm_form.bal_accessed %}
+                                                {{ norm_form.bal_accessed }}
+                                            {% endif %}
+                                        </td>
+                                    {% endif %}
                                 </tr>
                             {% endfor %}
                         {% endif %}

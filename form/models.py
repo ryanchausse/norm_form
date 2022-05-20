@@ -297,6 +297,8 @@ class NormForm(models.Model):
 
     filename = models.CharField(max_length=1000, blank=True, null=True, default='')
     emailed = models.BooleanField(default=False)
+    bal_accessed = models.DateTimeField(blank=True, null=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(get_user_model(),
