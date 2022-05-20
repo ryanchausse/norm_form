@@ -151,13 +151,14 @@ def get_pdf_page(request, pk=None):
     if request.user.groups.filter(name='Admins').exists() and pk:
         norm_form = NormForm.objects.get(id=pk)
         if norm_form.filename:
+            if request.user.email == settings.EMAIL_TO:
+                if not norm_form.bal_accessed:
+                    norm_form.bal_accessed = datetime.datetime.now()
+                    norm_form.save()
             # return file from patient_files as pdf response
             return FileResponse(open(os.path.abspath(os.path.dirname(__file__)) +
                                      '/patient_files/' +
                                      norm_form.filename, 'rb'), content_type='application/pdf')
-        if request.user.email == settings.EMAIL_TO:
-            norm_form.bal_accessed = datetime.datetime.now()
-
     return redirect('/')
 
 
