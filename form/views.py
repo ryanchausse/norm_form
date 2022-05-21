@@ -331,6 +331,8 @@ def email_bal(request, pk=None):
                 'New Form for Norm Hendricksen',
                 f'Hello Bal!\n\n'
                 f'There is a new form to process on the Norm Form website\n\n'
+                f'Please log in at https://form.hendricksenphd.com\n\n'
+                f'Then, click the link below to see the PDF\n\n'
                 f'https://form.hendricksenphd.com/get_pdf/{pk}\n\n'
                 f'Thanks!',
                 settings.EMAIL_HOST_USER,
