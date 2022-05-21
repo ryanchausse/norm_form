@@ -108,13 +108,16 @@ class NormFormPage(TemplateView):
     template_name = 'index.html'
 
     def dispatch(self, request, *args, **kwargs):
-        if not self.request.user.groups.filter(name='NotBal').exists():
+        if not self.request.user.groups.filter(name='NonBal').exists():
             return redirect('/view_norm_forms')
-
         return super(NormFormPage, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, pk=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        if self.request.user.groups.filter(name='NonBal').exists():
+            context['user_is_in_non_bal_group'] = True
+        else:
+            context['user_is_in_non_bal_group'] = False
         if self.request.user.groups.filter(name='Admins').exists():
             context['user_is_in_admins'] = True
             if pk:
