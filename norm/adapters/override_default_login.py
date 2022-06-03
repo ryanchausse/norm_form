@@ -13,6 +13,6 @@ class NormSocialAccountAdapter(DefaultSocialAccountAdapter):
                                 may have to log out of your current Gmail account. \
                                 Try again at <a href="./">Norm Form</a>')
         elif email_address not in ['chausse@gmail.com', 'paul@hendricksenlabs.com',
-                                   'norm@hendricksenphd.com']:
+                                   'norm@hendricksenphd.com', 'balbains@mbsbills.com']:
             return HttpResponse('You are not authorized to log in. \
                                 Try again at <a href="./">Norm Form</a>')
