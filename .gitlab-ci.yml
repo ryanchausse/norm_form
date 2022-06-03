@@ -48,7 +48,7 @@ setup_docker_container_and_deploy:
     #- ssh -i ~/.ssh/id_rsa root@form.hendricksenphd.com
     #  "cd /var/www;
     #  git clone https://$USERNAME:$DEPLOY_TOKEN@code.ryanchausse.com/ryanchausse/norm.git;"
-    - ssh -vvv -i ~/.ssh/id_rsa root@form.hendricksenphd.com -p 2986
+    - ssh -vvv -i ~/.ssh/id_rsa chausse@form.hendricksenphd.com -p 2986
       "hostname;
       ssh-keyscan code.ryanchausse.com >> ~/.ssh/known_hosts;
       chmod 644 ~/.ssh/known_hosts;
