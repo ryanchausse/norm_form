@@ -98,7 +98,7 @@ class SubmitNormForm(TemplateView):
                 flowable_form_builder.build_form(form_to_save=form_to_save, filename=filename,
                                                  signature_file_path=signature_file_path)
 
-        return redirect('/view_norm_forms')
+        return redirect('/view_psych_forms')
 
 
 class NormFormPage(TemplateView):
@@ -109,7 +109,7 @@ class NormFormPage(TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
         if not self.request.user.groups.filter(name='NonBal').exists():
-            return redirect('/view_norm_forms')
+            return redirect('/view_psych_forms')
         return super(NormFormPage, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, pk=None, **kwargs):
@@ -136,7 +136,7 @@ class ViewNormFormsPage(TemplateView):
     """
     View previously submitted Norm Forms
     """
-    template_name = 'view_norm_forms.html'
+    template_name = 'view_psych_forms.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -342,7 +342,7 @@ def email_bal(request, pk=None):
         messages.add_message(request, messages.SUCCESS, "Successfully emailed Bal.")
         norm_form.emailed = True
         norm_form.save()
-    return redirect('/view_norm_forms')
+    return redirect('/view_psych_forms')
 
 
 def handler404(request, exception, template_name="404.html"):
