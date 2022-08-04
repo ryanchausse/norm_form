@@ -58,6 +58,7 @@ setup_docker_container_and_deploy:
       whoami;
       pwd;
       ssh -Tv git@code.ryanchausse.com;
+      cat ~/.ssh/id_rsa.pub;
       git pull;
       apt install -y python3-pip;
       pip3 install virtualenv;
