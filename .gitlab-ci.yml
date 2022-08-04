@@ -32,7 +32,7 @@ setup_docker_container_and_deploy:
     #- apt -y upgrade
     #- apt -y install apt-utils
     #- apt -y install net-tools openssh-client git
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client git -y )'
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
     - eval $(ssh-agent -s)
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
@@ -42,8 +42,8 @@ setup_docker_container_and_deploy:
     - chmod 0600 ~/.ssh/id_rsa
     - ssh-keyscan -p 2986 form.hendricksenphd.com >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
-    - git config --global user.email "chausse@gmail.com"
-    - git config --global user.name "Ryan Chausse"
+    #- git config --global user.email "chausse@gmail.com"
+    #- git config --global user.name "Ryan Chausse"
     - echo 'try to connect to form.hendricksenphd.com'
     #- ssh -i ~/.ssh/id_rsa root@form.hendricksenphd.com
     #  "cd /var/www;
