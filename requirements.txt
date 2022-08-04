@@ -4,4 +4,4 @@ psycopg2-binary
 pillow
 reportlab
 pypdf2
-django-jsignature
+django-jsignature==0.11
