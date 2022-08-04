@@ -61,6 +61,7 @@ setup_docker_container_and_deploy:
       ssh -Tv git@code.ryanchausse.com;
       cat ~/.ssh/id_rsa.pub;
       git pull;
+      git pull https://$USERNAME:$DEPLOY_TOKEN@code.ryanchausse.com/ryanchausse/norm.git;
       apt install -y python3-pip;
       pip3 install virtualenv;
       virtualenv venv_norm;
