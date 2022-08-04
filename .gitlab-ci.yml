@@ -50,7 +50,6 @@ setup_docker_container_and_deploy:
     #  git clone https://$USERNAME:$DEPLOY_TOKEN@code.ryanchausse.com/ryanchausse/norm.git;"
     - ssh -i ~/.ssh/id_rsa chausse@form.hendricksenphd.com -p 2986
       "hostname;
-      ssh-keyscan code.ryanchausse.com >> ~/.ssh/known_hosts;
       chmod 644 ~/.ssh/known_hosts;
       echo 'Pulling norm repo';
       cd /var/www/norm;
@@ -70,6 +69,8 @@ setup_docker_container_and_deploy:
     # python3 manage.py collectstatic --no-input;
     # Also:
     # apt install -y python3-pip;
+    # Also:
+    # ssh-keyscan code.ryanchausse.com >> ~/.ssh/known_hosts;
     # Might want to chown -R www-data:www-data /var/www; in the future, but do not. Beware of root owned admin directory
     - echo "Great success."
 
