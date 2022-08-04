@@ -9,7 +9,7 @@ variables:
   TZ: "America/Los_Angeles"
 
 default:
-  image: alpine:3.15.5
+  image: ubuntu:22.10
   before_script:
     - echo 'Doing things...'
 
