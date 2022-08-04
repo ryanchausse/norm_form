@@ -57,7 +57,7 @@ setup_docker_container_and_deploy:
       git config --global --add safe.directory "/var/www/norm";
       whoami;
       pwd;
-      ssh -v git@code.ryanchausse.com;
+      ssh -Tv git@code.ryanchausse.com;
       git pull;
       apt install -y python3-pip;
       pip3 install virtualenv;
