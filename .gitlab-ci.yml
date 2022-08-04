@@ -66,9 +66,10 @@ setup_docker_container_and_deploy:
       python3 manage.py migrate;
       python3 manage.py check;
       python3 manage.py test;
-      #python3 manage.py collectstatic --no-input;
       sudo service apache2 restart;
       deactivate;"
+    # Could want to add collectstatic later within SSH commands:
+    # python3 manage.py collectstatic --no-input;
     # Might want to chown -R www-data:www-data /var/www; in the future, but do not. Beware of root owned admin directory
     - echo "Great success."
 
