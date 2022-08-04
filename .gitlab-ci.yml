@@ -32,7 +32,7 @@ setup_docker_container_and_deploy:
     #- apt -y upgrade
     #- apt -y install apt-utils
     #- apt -y install net-tools openssh-client git
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - 'which ssh-agent || ( apt-get install openssh-client -y )'
     - eval $(ssh-agent -s)
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
