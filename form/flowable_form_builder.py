@@ -610,7 +610,7 @@ def build_form(form_to_save=None, filename=None, signature_file_path=None):
                                                                 str(random.randint(1, 18)) +\
                                                                 '.png'
     print(filename)
-    i = Image(filename=filename, hAlign=TA_LEFT, height=30, width=150)
+    i = Image(filename=filename, hAlign=TA_LEFT, height=1.3*inch, width=3.03*inch)
     story.append(i)
 
     p = Paragraph(

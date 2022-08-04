@@ -66,7 +66,7 @@ setup_docker_container_and_deploy:
       python3 manage.py migrate;
       python3 manage.py check;
       python3 manage.py test;
-      python3 manage.py collectstatic --no-input;
+      #python3 manage.py collectstatic --no-input;
       sudo service apache2 restart;
       deactivate;"
     # Might want to chown -R www-data:www-data /var/www; in the future, but do not. Beware of root owned admin directory
