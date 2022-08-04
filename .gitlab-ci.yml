@@ -9,7 +9,7 @@ variables:
   TZ: "America/Los_Angeles"
 
 default:
-  image: ubuntu
+  image: ubuntu:latest
   before_script:
     - echo 'Doing things...'
 
