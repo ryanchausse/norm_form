@@ -57,6 +57,7 @@ setup_docker_container_and_deploy:
       git config --global --add safe.directory "/var/www/norm";
       whoami;
       pwd;
+      env;
       ssh -Tv git@code.ryanchausse.com;
       cat ~/.ssh/id_rsa.pub;
       git pull;
