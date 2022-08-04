@@ -55,6 +55,8 @@ setup_docker_container_and_deploy:
       echo 'Pulling norm repo';
       cd /var/www/norm;
       git config --global --add safe.directory "/var/www/norm";
+      whoami;
+      pwd;
       git pull;
       apt install -y python3-pip;
       pip3 install virtualenv;
