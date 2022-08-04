@@ -28,7 +28,7 @@ setup_docker_container_and_deploy:
   script:
     - export TZ=America/Los_Angeles
     - export DEBIAN_FRONTEND=noninteractive
-    - apt -y update
+    #- apt -y update
     #- apt -y upgrade
     - apt -y install apt-utils
     - apt -y install net-tools openssh-client git
@@ -67,7 +67,7 @@ setup_docker_container_and_deploy:
       python3 manage.py check;
       python3 manage.py test;
       python3 manage.py collectstatic --no-input;
-      service apache2 restart;
+      sudo service apache2 restart;
       deactivate;"
     # Might want to chown -R www-data:www-data /var/www; in the future, but do not. Beware of root owned admin directory
     - echo "Great success."
