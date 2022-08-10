@@ -11282,4 +11282,5 @@ body.sidebar-toggled footer.sticky-footer {
 
 canvas {
   touch-action: none;
+  -ms-touch-action: none;
 }

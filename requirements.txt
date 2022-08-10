@@ -5,3 +5,4 @@ pillow
 reportlab
 pypdf2
 django-jsignature==0.11
+requests
