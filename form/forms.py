@@ -3,7 +3,6 @@ from django.forms import SelectDateWidget
 from .models import NormForm
 import datetime
 from .models import Patient
-from .models import Physician
 from .models import Facility
 from .models import SubjectiveBoilerplateOption
 from .models import SubjectiveOption
@@ -16,7 +15,7 @@ from jsignature.widgets import JSignatureWidget
 class NormFormForm(forms.ModelForm):
     patient = forms.ModelChoiceField(queryset=Patient.objects.all())
     facility = forms.ModelChoiceField(queryset=Facility.objects.all())
-    physician = forms.ModelChoiceField(queryset=Physician.objects.all(), required=False)
+    physician = forms.CharField(required=False)
     date = forms.DateField(initial=datetime.date.today(),
                            widget=forms.TextInput(attrs={'placeholder': 'YYYY-MM-DD'}))
 

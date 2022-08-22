@@ -53,25 +53,6 @@ class Patient(models.Model):
         verbose_name_plural = 'Patients'
 
 
-class Physician(models.Model):
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    facility = models.ForeignKey(Facility, default=None, null=True, blank=True, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    created_by = models.ForeignKey(get_user_model(),
-                                   null=True,
-                                   blank=True,
-                                   on_delete=models.SET_NULL)
-
-    def __str__(self):
-        return f'{self.last_name}, {self.first_name}'
-
-    class Meta:
-        verbose_name = 'Physician'
-        verbose_name_plural = 'Physicians'
-
-
 class SubjectiveBoilerplateOption(models.Model):
     name = models.CharField(max_length=1000, null=True)
     full_text = models.CharField(max_length=1000, null=True)
@@ -151,7 +132,7 @@ class Icd10Codes(models.Model):
 class NormForm(models.Model):
     patient = models.ForeignKey(Patient, default=None, on_delete=models.CASCADE, blank=True, null=True)
     facility = models.ForeignKey(Facility, default=None, on_delete=models.CASCADE, blank=True, null=True)
-    physician = models.ForeignKey(Physician, default=None, on_delete=models.CASCADE, blank=True, null=True)
+    physician = models.CharField(max_length=255, null=True, blank=True)
     date = models.DateField(blank=True, default=datetime.date.today)
 
     # Subjective
