@@ -40,10 +40,10 @@ class NormFormDocTemplate(BaseDocTemplate):
         print(self.height)  # 821.89
         print(self.width)  # 565.28
         frame_top = Frame(self.leftMargin, self.bottomMargin, self.width, self.height, id='frame_top')
-        frame_mental_status = Frame(self.leftMargin, -145, self.width, self.height, id='frame_mental_status')
-        frame_left = Frame(self.leftMargin, -172, 115, self.height, id='frame_left')
-        frame_right = Frame(self.leftMargin + 110, -177, 450, self.height, id='frame_right')
-        frame_bottom = Frame(self.leftMargin, self.bottomMargin, 7 * inch, 4.3 * inch, id='frame_bottom')
+        frame_mental_status = Frame(self.leftMargin, -115, self.width, self.height, id='frame_mental_status')
+        frame_left = Frame(self.leftMargin, -142, 115, self.height, id='frame_left')
+        frame_right = Frame(self.leftMargin + 110, -147, 450, self.height, id='frame_right')
+        frame_bottom = Frame(self.leftMargin, self.bottomMargin, 7 * inch, 4.7 * inch, id='frame_bottom')
         self.addPageTemplates([PageTemplate(id='First', frames=[frame_top, frame_mental_status, frame_left, frame_right,
                                                                 frame_bottom],
                                             pagesize=self.pagesize)])
@@ -66,19 +66,13 @@ def build_form(form_to_save=None, filename=None, signature_file_path=None):
     story.append(Spacer(0, 0.1*inch))
 
     data = [['Patient Name',
-             'Date'],
+             'Date',
+             'Facility',
+             'Physician'],
             [f'{form_to_save.patient.last_name}, {form_to_save.patient.first_name}',
-             f'{form_to_save.date}']]
+             f'{form_to_save.date}', f'{form_to_save.facility.name}', f'{form_to_save.physician}']]
     grid = [('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold')]
-    t = Table(data, colWidths=[4.95*inch, 2.9 * inch], hAlign=TA_LEFT, style=TableStyle(grid))
-    story.append(t)
-
-    story.append(Spacer(0, 0.1 * inch))
-
-    data = [['Facility', 'Physician'],
-            [f'{form_to_save.facility.name}', f'{form_to_save.physician}']]
-    grid = [('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold')]
-    t = Table(data, colWidths=[4.95*inch, 2.9 * inch], hAlign=TA_LEFT, style=TableStyle(grid))
+    t = Table(data, colWidths=[2.7 * inch, 0.8 * inch, 2.2 * inch, 2.1 * inch], hAlign=TA_LEFT, style=TableStyle(grid))
     story.append(t)
 
     story.append(Spacer(0, 0.1 * inch))
