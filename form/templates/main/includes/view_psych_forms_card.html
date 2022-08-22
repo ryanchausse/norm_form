@@ -18,10 +18,10 @@
                         <tr>
                             <th>Patient</th>
                             <th>Facility</th>
+                            <th>Physician</th>
                             <th>Date</th>
                             <th>PDF</th>
                             <th>New Form Link</th>
-                            <th>Email Bal</th>
                             <th>Email Sent?</th>
                             {% if user.is_authenticated and user_is_in_non_bal_group %}
                                 <th>Bal Accessed Time</th>
@@ -32,10 +32,10 @@
                         <tr>
                             <th>Patient</th>
                             <th>Facility</th>
+                            <th>Physician</th>
                             <th>Date</th>
                             <th>PDF</th>
                             <th>New Form Link</th>
-                            <th>Email Bal</th>
                             <th>Email Sent?</th>
                             {% if user.is_authenticated and user_is_in_non_bal_group %}
                                 <th>Bal Accessed Time</th>
@@ -48,15 +48,15 @@
                                 <tr>
                                     <td>{{ norm_form.patient }}</td>
                                     <td>{{ norm_form.facility }}</td>
+                                    <td>{{ norm_form.physician }}</td>
                                     <td>{{ norm_form.date }}</td>
-                                    <td><a href="/get_pdf/{{ norm_form.id }}" target="_blank">{{ norm_form.filename }}</a></td>
+                                    <td><a href="/get_pdf/{{ norm_form.id }}" target="_blank">View PDF</a></td>
                                     <td><a href="/{{ norm_form.id }}">View / Submit Another</a></td>
-                                    <td><a href="/email_bal/{{ norm_form.id }}">Email Bal</a></td>
                                     <td>
                                         {% if norm_form.emailed %}
                                             <span style="color:green">Email sent</span>
                                         {% else %}
-                                            <span style="color:red">No email sent</span>
+                                            <span style="color:red"><a href="/email_bal/{{ norm_form.id }}">Email Bal</a></span>
                                         {% endif %}
                                     </td>
                                     {% if user.is_authenticated and user_is_in_non_bal_group %}
