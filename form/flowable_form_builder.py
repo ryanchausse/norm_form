@@ -37,10 +37,10 @@ class CheckedBox(Flowable):
 class NormFormDocTemplate(BaseDocTemplate):
     def build(self, flowables):
         self._calc()
-        print(self.height)  # 821.89
-        print(self.width)  # 565.28
+        # print(self.height)  # 821.89
+        # print(self.width)  # 565.28
         frame_top = Frame(self.leftMargin, self.bottomMargin, self.width, self.height, id='frame_top')
-        frame_mental_status = Frame(self.leftMargin, -115, self.width, self.height, id='frame_mental_status')
+        frame_mental_status = Frame(self.leftMargin, -110, self.width, self.height, id='frame_mental_status')
         frame_left = Frame(self.leftMargin, -142, 115, self.height, id='frame_left')
         frame_right = Frame(self.leftMargin + 110, -147, 450, self.height, id='frame_right')
         frame_bottom = Frame(self.leftMargin, self.bottomMargin, 7 * inch, 4.7 * inch, id='frame_bottom')
@@ -609,7 +609,7 @@ def build_form(form_to_save=None, filename=None, signature_file_path=None):
                                                                 'signature' +\
                                                                 str(random.randint(1, 18)) +\
                                                                 '.png'
-    i = Image(filename=filename, hAlign=TA_LEFT, height=1.3*inch, width=3.03*inch)
+    i = Image(filename=filename, hAlign=TA_LEFT, height=1.07 * inch, width=2.5 * inch)
     story.append(i)
 
     p = Paragraph(
