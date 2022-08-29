@@ -1059,6 +1059,8 @@
                     data: {"ids": id_list},
                     success: function (data) {
                         document.getElementById("id_diagnostic_impression").value += (data + ' ');
+                        document.getElementById("filterICD10").value = '';
+                        document.getElementById("filterICD10").focus();
                     },
                     error: function(){
                       alert("Cannot get data");
