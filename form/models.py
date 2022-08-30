@@ -30,7 +30,7 @@ class Patient(models.Model):
     dob = models.DateField(max_length=8, blank=True, null=True)
     mrn = models.CharField(max_length=255, blank=True, null=True, default='')
     ssn = models.CharField(max_length=255, blank=True, null=True, default='')
-    facility = models.ForeignKey(Facility, default=None, on_delete=models.CASCADE)
+    facility = models.ForeignKey(Facility, blank=True, null=True, default=None, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(get_user_model(),

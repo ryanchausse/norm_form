@@ -14,6 +14,20 @@
         </ul>
     {% endif %}
     {% if user.is_authenticated and user_is_in_admins %}
+        <div id="div_add_patient" style="margin-left: 10px; display:none; background-color:#e0ffcc">
+            <h3>Add New Patient:</h3>
+            <table class="table">
+                <tbody>
+                    <form name="form_add_patient" action="./api/v1/add_patient" method="POST">
+                        {% csrf_token %}
+                        <tr><td>First Name:</td><td>{{ patient_form.first_name }}</td></tr>
+                        <tr><td>Last Name:</td><td>{{ patient_form.last_name }}</td></tr>
+                        <tr><td>D.O.B.:</td><td>{{ patient_form.dob }}</td></tr>
+                        <tr><td></td><td><input type="submit" value="Submit New Patient"></td></tr>
+                    </form>
+                </tbody>
+            </table>
+        </div>
         <div class="card-body">
             <form id='form_to_submit' action="/submit_form" method="post">
                 {% csrf_token %}
@@ -31,7 +45,7 @@
                         <tr>
                             <td>
                                 {{ form.patient.errors }}
-                                <label for="{{ form.patient.id_for_label }}">Patient: <a href="./admin/form/patient/add"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                <label for="{{ form.patient.id_for_label }}">Patient: <a id="a_add_patient" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
                                   <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg></a>
                                 </label>
                             </td>
@@ -42,7 +56,6 @@
                         <tr>
                             <td></td>
                             <td id="previous_patient_forms">
-
                             </td>
                         </tr>
                         <tr>
@@ -1106,6 +1119,14 @@
                         alert("Cannot get data");
                     }
                 });
+            });
+            $("#a_add_patient").click(function() {
+                if ($("#div_add_patient").css("display") == "none") {
+                    $("#div_add_patient").css("display", "block");
+                    $("#id_first_name").focus();
+                } else {
+                    $("#div_add_patient").css("display", "none");
+                }
             });
         </script>
     {% endif %}

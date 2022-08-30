@@ -19,6 +19,7 @@ from django.conf import settings
 from .models import Patient
 from .models import NormForm
 from .forms import NormFormForm
+from .forms import PatientForm
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 import reportlab
@@ -126,7 +127,9 @@ class NormFormPage(TemplateView):
                 form = NormFormForm(initial=model_to_dict(norm_form))
             else:
                 form = NormFormForm()
+            patient_form = PatientForm()
             context['form'] = form
+            context['patient_form'] = patient_form
         else:
             context['user_is_in_admins'] = False
             context['form'] = None
@@ -347,6 +350,27 @@ def email_bal(request, pk=None):
         norm_form.emailed = True
         norm_form.save()
     return redirect('/view_psych_forms')
+
+
+def add_patient(request):
+    """
+    Adds patient through form in hidden div on Norm Form root
+    """
+    if not request.user.groups.filter(name='Admins').exists():
+        return redirect('/')
+    form = PatientForm(request.POST)
+    if 'first_name' in request.POST and request.POST.get('first_name'):
+        form.first_name = request.POST.get('first_name')
+    if 'last_name' in request.POST and request.POST.get('last_name'):
+        form.last_name = request.POST.get('last_name')
+    if 'dob' in request.POST and request.POST.get('dob'):
+        form.dob = request.POST.get('dob')
+    # Save to DB
+    form_to_save = form.save(commit=False)
+    form_to_save.created_by = request.user
+    form_to_save.save()
+    messages.add_message(request, messages.SUCCESS, "Successfully saved patient.")
+    return redirect('/')
 
 
 def handler404(request, exception, template_name="404.html"):

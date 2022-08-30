@@ -194,3 +194,12 @@ class NormFormForm(forms.ModelForm):
         model = NormForm
         exclude = ['created_by', 'filename']
 
+
+class PatientForm(forms.ModelForm):
+    first_name = forms.TextInput()
+    last_name = forms.TextInput()
+    dob = forms.DateField(widget=forms.TextInput(attrs={'placeholder': 'YYYY-MM-DD'}))
+
+    class Meta:
+        model = Patient
+        fields = ['first_name', 'last_name', 'dob']

@@ -32,4 +32,5 @@ urlpatterns = [
     path('api/v1/icd_10_codes', views.get_icd_10_code_text, name='icd_10_code_text'),
     path('api/v1/filtered_icd_10_codes', views.get_filtered_icd_10_code_text, name='filtered_icd_10_code_text'),
     path('api/v1/previous_patient_forms', views.find_previous_patient_forms, name='previous_patient_forms'),
+    path('api/v1/add_patient', views.add_patient, name='add_patient'),
 ]
