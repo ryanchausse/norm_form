@@ -13,6 +13,7 @@ from django.shortcuts import render
 from django.template import RequestContext
 from django.core import serializers
 from django.forms.models import model_to_dict
+from django.db.models import Q
 import logging
 from django.conf import settings
 from .models import Patient
@@ -281,18 +282,21 @@ def get_filtered_icd_10_code_text(request):
         if request.GET.get('data') is not None:
             icd_10_codes = Icd10Codes.objects\
                                      .filter(full_code__startswith="F")\
-                                     .filter(full_description__icontains=filter_text)\
+                                     .filter(Q(full_description__icontains=filter_text) |
+                                             Q(diagnosis_code__icontains=filter_text))\
                                      .values('id', 'diagnosis_code',
                                              'full_code', 'abbreviated_description',
                                              'full_description')\
-                                     .order_by('abbreviated_description')
+                                     .order_by('abbreviated_description')\
+                                     .order_by('diagnosis_code')
         else:
             icd_10_codes = Icd10Codes.objects\
                                      .filter(full_code__startswith="F")\
                                      .values('id', 'diagnosis_code',
                                              'full_code', 'abbreviated_description',
                                              'full_description')\
-                                     .order_by('abbreviated_description')
+                                     .order_by('abbreviated_description')\
+                                     .order_by('diagnosis_code')
         # print(icd_10_codes)
         return JsonResponse(list(icd_10_codes), safe=False)
     return redirect('/')

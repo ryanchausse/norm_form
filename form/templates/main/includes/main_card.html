@@ -1079,7 +1079,8 @@
                         success: function (data) {
                             var select_string = '';
                             $.each(data, function(k, v) {
-                                select_string += "<option value='" + v.id + "'>" + v.abbreviated_description + "</option> "
+                                select_string += "<option value='" + v.id + "'>" + v.diagnosis_code +
+                                                 " - " + v.abbreviated_description + "</option> "
                             });
                             $("#id_icd_10_codes").empty().append(select_string);
                         },

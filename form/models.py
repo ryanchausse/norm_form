@@ -122,7 +122,7 @@ class Icd10Codes(models.Model):
                                    on_delete=models.SET_NULL)
 
     def __str__(self):
-        return f'{self.abbreviated_description}'
+        return f'{self.diagnosis_code} - {self.abbreviated_description}'
 
     class Meta:
         verbose_name = 'ICD-10 Code'

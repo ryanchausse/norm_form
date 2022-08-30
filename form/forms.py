@@ -173,7 +173,8 @@ class NormFormForm(forms.ModelForm):
     # Assessment
     icd_10_codes = forms.ModelMultipleChoiceField(queryset=Icd10Codes.objects
                                                   .filter(full_code__startswith="F")
-                                                  .order_by('abbreviated_description'),
+                                                  .order_by('abbreviated_description')
+                                                  .order_by('diagnosis_code'),
                                                   required=False)
     discussion_treatment_options = forms.ModelMultipleChoiceField(queryset=DiscussionTreatmentOption.objects.all(),
                                                                   required=False)
